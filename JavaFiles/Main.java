@@ -1,11 +1,14 @@
 
-public class Main {
+public class Main 
+{
     // This method will be what is used to change the array of all music notes to start at the key the user provides
-   public static String[] test(String[] notes, int start) {
+   public static String[] test(String[] notes, int start) 
+    {
         int length = notes.length;
         String[] test = new String[length];
 
-        for(int i = 0; i < notes.length; i++){
+        for(int i = 0; i < notes.length; i++)
+        {
             test[i] = notes[start];
             start = start + 1;
             if(start == notes.length){
@@ -26,7 +29,8 @@ public class Main {
         return answer;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         // Test to see if it works with OOP
         Notes.Chromatic chromaticScale = Notes.getChromatic();
         String [] allNotes = chromaticScale.getAllNotes();
@@ -34,9 +38,10 @@ public class Main {
         int index = chromaticScale.getIndex(userKey);
 
         String [] test = test(allNotes, index);
-        for(int i = 0; i <test.length; i++){
+        for(int i = 0; i <test.length; i++)
+        {
             System.out.println(test[i]);
         }
 
-        }
     }
+}
