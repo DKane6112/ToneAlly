@@ -1,4 +1,3 @@
-
 public class Main 
 {
     // This method will be what is used to change the array of all music notes to start at the key the user provides
