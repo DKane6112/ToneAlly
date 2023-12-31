@@ -1,3 +1,7 @@
+import music.Notes.*;
+import java.util.Scanner;
+import static music.Notes.*;
+
 public class Main 
 {
     // This method will be what is used to change the array of all music notes to start at the key the user provides
@@ -31,10 +35,9 @@ public class Main
     public static void main(String[] args) 
     {
         // Test to see if it works with OOP
-        Notes.Chromatic chromaticScale = Notes.getChromatic();
-        String [] allNotes = chromaticScale.getAllNotes();
+        String [] allNotes = Chromatic.getAllNotes();
         String userKey = inputString("Choose your key: ");
-        int index = chromaticScale.getIndex(userKey);
+        int index = Chromatic.getIndex(userKey);
 
         String [] test = test(allNotes, index);
         for(int i = 0; i <test.length; i++)
