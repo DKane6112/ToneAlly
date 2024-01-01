@@ -23,6 +23,26 @@ public class Main
         return test;
     }
 
+    public static String [] majorScale(String text)
+    {
+        String [] allNotes = Chromatic.getAllNotes();
+        int index = Chromatic.getIndex(text);
+        String [] chromatic = test2(allNotes,index);
+
+        String [] majorScale = getMajor(chromatic);
+        return majorScale;
+    }
+
+    public static String [] minorScale(String text)
+    {
+        String [] allNotes = Chromatic.getAllNotes();
+        int index = Chromatic.getIndex(text);
+        String [] chromatic = test2(allNotes,index);
+
+        String [] minorScale = getMinor(chromatic);
+        return minorScale;
+    }
+
     public static String inputString (String message)
     {
         Scanner scanner = new Scanner(System.in);
