@@ -1,3 +1,5 @@
+package music;
+
 import music.Notes.*;
 import java.util.Scanner;
 import static music.Notes.*;
