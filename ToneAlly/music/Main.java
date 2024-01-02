@@ -7,27 +7,27 @@ import static music.Notes.*;
 public class Main 
 {
     // This method will be what is used to change the array of all music notes to start at the key the user provides
-   public static String[] test(String[] notes, int start) 
+   public static String[] sortByKey(String[] notes, int start) 
     {
         int length = notes.length;
-        String[] test = new String[length];
+        String[] notesByKey = new String[length];
 
         for(int i = 0; i < notes.length; i++)
         {
-            test[i] = notes[start];
+            notesByKey[i] = notes[start];
             start = start + 1;
             if(start == notes.length){
                 start = 0;
             }
         }
-        return test;
+        return notesByKey;
     }
 
     public static String [] majorScale(String text)
     {
         String [] allNotes = Chromatic.getAllNotes();
         int index = Chromatic.getIndex(text);
-        String [] chromatic = test2(allNotes,index);
+        String [] chromatic = sortByKey(allNotes,index);
 
         String [] majorScale = getMajor(chromatic);
         return majorScale;
@@ -37,7 +37,7 @@ public class Main
     {
         String [] allNotes = Chromatic.getAllNotes();
         int index = Chromatic.getIndex(text);
-        String [] chromatic = test2(allNotes,index);
+        String [] chromatic = sortByKey(allNotes,index);
 
         String [] minorScale = getMinor(chromatic);
         return minorScale;
