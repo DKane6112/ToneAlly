@@ -27,7 +27,7 @@ public class Main
     {
         String [] allNotes = Chromatic.getAllNotes();
         int index = Chromatic.getIndex(text);
-        String [] chromatic = test2(allNotes,index);
+        String [] chromatic = sortByKey(allNotes,index);
 
         String [] majorScale = getMajor(chromatic);
         return majorScale;
@@ -37,7 +37,7 @@ public class Main
     {
         String [] allNotes = Chromatic.getAllNotes();
         int index = Chromatic.getIndex(text);
-        String [] chromatic = test2(allNotes,index);
+        String [] chromatic = sortByKey(allNotes,index);
 
         String [] minorScale = getMinor(chromatic);
         return minorScale;
