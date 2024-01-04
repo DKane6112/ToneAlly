@@ -51,4 +51,42 @@ public class Notes
 
         return new Chromatic();
     }
+
+    public static String [] getChord(String note, String tone)
+    {
+        Chromatic chromatic = getChromatic();
+        String[] key = chromatic.getAllNotes();
+        int index = chromatic.getIndex(note);
+        String[] scale = new String[7];
+
+        String[] notesByKey = sortByKey(key,index);
+
+        if(tone.equals("Major")){
+            scale = Chromatic.getMajor(notesByKey);
+        }
+        else
+        {
+            scale = Chromatic.getMinor(notesByKey);
+        }
+
+        String[] chord = {scale[0],scale[2],scale[4]};
+
+        return chord;
+    }
+
+    public static String[] sortByKey(String[] notes, int start) 
+    {
+        int length = notes.length;
+        String[] notesByKey = new String[length];
+
+        for(int i = 0; i < notes.length; i++)
+        {
+            notesByKey[i] = notes[start];
+            start = start + 1;
+            if(start == notes.length){
+                start = 0;
+            }
+        }
+        return notesByKey;
+    }
 }
