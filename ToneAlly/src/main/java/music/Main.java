@@ -43,6 +43,26 @@ public class Main
         return minorScale;
     }
 
+    public static String [] chordNotes(String root, String tone)
+    {
+        String [] chord = getChord(root,tone);
+
+        return chord;
+    }
+
+    public static String chordName(String root, String tone, int position)
+    {
+        String [] allNotes = Chromatic.getAllNotes();
+        int index = Chromatic.getIndex(root);
+
+        String [] test = test2(allNotes, index);
+
+        String chord = test[position];
+        chord = chord + tone;
+
+        return chord;
+    }
+
     public static void main(String[] args) 
     {
 
