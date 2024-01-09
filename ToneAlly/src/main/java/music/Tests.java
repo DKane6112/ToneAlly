@@ -41,9 +41,9 @@ Public class Tests
 
         String [] modeScale = getMajor(test);
 
-        string [] sortedMode = sortByKey(modeScale, mode);
+        String [] sortedMode = sortByKey(modeScale, mode);
 
-        for(int i = 0; i < test.length; i++)
+        for(int i = 0; i < sortedMode.length; i++)
         {
             System.out.println(sortedMode[i]);
         }
