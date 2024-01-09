@@ -30,12 +30,31 @@ Public class Tests
             System.out.println(test[i]);
         }
   }
+
+  public static void getMode(int mode)
+  {
+        String [] allNotes = Chromatic.getAllNotes();
+        String userKey = inputString("Choose your key: ");
+        int index = Chromatic.getIndex(userKey);
+
+        String [] test = sortByKey(allNotes, index);
+
+        String [] modeScale = getMajor(test);
+
+        string [] sortedMode = sortByKey(modeScale, mode);
+
+        for(int i = 0; i < test.length; i++)
+        {
+            System.out.println(sortedMode[i]);
+        }
+  }
     
   
   public static void main(String[] args) 
   {
 
         sortByKeyTest();
+        getmode(2);
   }
   
 }
