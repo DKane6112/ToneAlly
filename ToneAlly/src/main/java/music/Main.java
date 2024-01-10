@@ -6,22 +6,6 @@ import static music.Notes.*;
 
 public class Main 
 {
-    // This method will be what is used to change the array of all music notes to start at the key the user provides
-   public static String[] sortByKey(String[] notes, int start) 
-    {
-        int length = notes.length;
-        String[] notesByKey = new String[length];
-
-        for(int i = 0; i < notes.length; i++)
-        {
-            notesByKey[i] = notes[start];
-            start = start + 1;
-            if(start == notes.length){
-                start = 0;
-            }
-        }
-        return notesByKey;
-    }
 
     public static String [] majorScale(String text)
     {
