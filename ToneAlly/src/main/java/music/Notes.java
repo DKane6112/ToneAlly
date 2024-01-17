@@ -106,10 +106,9 @@ public class Notes
         return notesByKey;
     }
 
-    public static void getMode(int mode)
+    public static void getMode(int mode, String userKey)
     {
         String [] allNotes = Chromatic.getAllNotes();
-        String userKey = inputString("Choose your key: ");
         int index = Chromatic.getIndex(userKey);
 
         String [] test = sortByKey(allNotes, index);
