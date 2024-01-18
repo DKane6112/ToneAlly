@@ -106,7 +106,7 @@ public class Notes
         return notesByKey;
     }
 
-    public static void getMode(int mode, String userKey)
+    public static String [] getMode(int mode, String userKey)
     {
         String [] allNotes = Chromatic.getAllNotes();
         int index = Chromatic.getIndex(userKey);
@@ -117,9 +117,6 @@ public class Notes
 
         string [] sortedMode = sortByKey(modeScale, mode);
 
-        for(int i = 0; i < test.length; i++)
-        {
-            System.out.println(sortedMode[i]);
-        }
+        return sortedMode;
     }
 }
