@@ -39,12 +39,17 @@ public class Main
         String [] allNotes = Chromatic.getAllNotes();
         int index = Chromatic.getIndex(root);
 
-        String [] test = test2(allNotes, index);
+        String [] test = sortByKey(allNotes, index);
 
         String chord = test[position];
         chord = chord + tone;
 
         return chord;
+    }
+
+    public static String[] mode(int index, String modeName)
+    {
+        return getMode(index, modeName);
     }
 
     public static void main(String[] args) 
