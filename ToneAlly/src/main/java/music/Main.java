@@ -6,7 +6,7 @@ import static music.Notes.*;
 
 public class Main 
 {
-
+    // Used to return all notes of major scale to be used by SpringBoot controller
     public static String [] majorScale(String text)
     {
         String [] allNotes = Chromatic.getAllNotes();
@@ -17,6 +17,7 @@ public class Main
         return majorScale;
     }
 
+    // Used to return all notes of minor scale to be used by SpringBoot controller
     public static String [] minorScale(String text)
     {
         String [] allNotes = Chromatic.getAllNotes();
@@ -34,6 +35,7 @@ public class Main
         return chord;
     }
 
+    // Used by SpringBoot controller to send names of the chords in the recomended chord progressions
     public static String chordName(String root, String tone, int position)
     {
         String [] allNotes = Chromatic.getAllNotes();
@@ -47,6 +49,7 @@ public class Main
         return chord;
     }
 
+    // Used to return all notes of the modes to be used by SpringBoot controller
     public static String[] mode(int index, String modeName)
     {
         return getMode(index, modeName);
