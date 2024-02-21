@@ -3,16 +3,24 @@ package music;
 public class Notes 
 {
 
-    public static class Chromatic
-    {
-        private final String [] allNotes = {"A","A#","B","C","C#","D","D#","E","F","F#","G","G#"};
+    private final String [] allNotes = {"A","A#","B","C","C#","D","D#","E","F","F#","G","G#"};
 
-        public String[] getAllNotes()
-        {
+    public String[] getAllNotes()
+    {
             
-            return allNotes;
-        }
+        return allNotes;
     }
+
+    public static int getIndex(String note){
+            int index = 0;
+            for(int i = 0; i< allNotes.length; i++ ){
+                if (note.equals(allNotes[i])){
+                    index = i;
+                }
+            }
+           return index;
+        }
+    
 
     public static String []getMajor(String [] chromatic)
     {
@@ -60,12 +68,6 @@ public class Notes
             minorScale[6] = chromatic[11];
 
             return minorScale;
-    }
-
-    public static Chromatic getChromatic()
-    {
-
-        return new Chromatic();
     }
 
     public static String [] getChord(String note, String tone)
