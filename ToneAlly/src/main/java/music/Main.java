@@ -3,29 +3,24 @@ package music;
 import music.Notes.*;
 import java.util.Scanner;
 import static music.Notes.*;
+import music.Scale.*;
 
 public class Main 
 {
     // Used to return all notes of major scale to be used by SpringBoot controller
-    public static String [] majorScale(String text)
+    public static String [] majorScale(String key)
     {
-        String [] allNotes = Chromatic.getAllNotes();
-        int index = Chromatic.getIndex(text);
-        String [] chromatic = sortByKey(allNotes,index);
+        Scale majorScale = new Scale(key);
 
-        String [] majorScale = getMajor(chromatic);
-        return majorScale;
+        return majorScale.getMajor();
     }
 
     // Used to return all notes of minor scale to be used by SpringBoot controller
-    public static String [] minorScale(String text)
+    public static String [] minorScale(String key)
     {
-        String [] allNotes = Chromatic.getAllNotes();
-        int index = Chromatic.getIndex(text);
-        String [] chromatic = sortByKey(allNotes,index);
+        Scale minorScaleScale = new Scale(key);
 
-        String [] minorScale = getMinor(chromatic);
-        return minorScale;
+        return minorScale.getMinor();
     }
 
     public static String [] chordNotes(String root, String tone)
@@ -50,9 +45,11 @@ public class Main
     }
 
     // Used to return all notes of the modes to be used by SpringBoot controller
-    public static String[] mode(int index, String modeName)
+    public static String[] mode(int index, String key, String tone)
     {
-        return getMode(index, modeName);
+        Scale mode = new Scale(key);
+
+        return mode.getMode(index, tone);
     }
 
     public static void main(String[] args) 
