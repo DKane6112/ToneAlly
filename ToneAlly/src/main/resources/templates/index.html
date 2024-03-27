@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <title>ToneAlly</title>
+</head>
+<body>
+    <div class="gridArea">
+        <header id="header">
+            <h1><img id="favicon" src="favicon.ico" alt="ToneAlly Logo">ToneAlly</h1>
+        </header>
+
+        <nav id="nav">
+            <a id="about" class="navButton" onclick="goToAnalyse()">About</a>
+            <a id="analysis" class="navButton" onclick="goToAnalyse()">Analyse</a>
+            <a id="refresh" class="navButton" onclick="scalesButton()">Create</a>
+        </nav>
+        
+        <section id="userInput">
+            <form id="myForm">
+                <label for="key">Key:</label>
+                <select id="key" name="key">
+                    <option value="A">A</option>
+                    <option value="A#">A#</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="C#">C#</option>
+                    <option value="D">D</option>
+                    <option value="D#">D#</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="F#">F#</option>
+                    <option value="G">G</option>
+                    <option value="G#">G#</option>
+                </select>
+    
+                <label for="mood">Mood:</label>
+                <select id="mood" name="mood">
+                    <option value="M">Happy</option>
+                    <option value="m">Sad</option>
+                </select>
+
+                <label for="genre">Genre:</label>
+                <select id="genre" name="genre">
+                    <option value="rock">Rock</option>
+                    <option value="pop">Pop</option>
+                    <option value="jazz">Jazz</option>
+                </select>
+    
+                <button type="button" onclick="buttonClicked(); getMajor(); getMinor(); getChordName(0); getChordName(3); getChordName(5); getChordName(4);">Submit</button>
+            </form>
+        </section>
+    
+
+        <div id="result">
+            <div id="scales">
+                <label for="ChromaticScale">Chromatic Scale:</label>
+                <p id="ChromaticScale"></p>
+    
+                <label for="MajorScale">Major Scale:</label>
+                <p id="MajorScale"></p>
+    
+                <label for="MinorScale">Minor Scale:</label>
+                <p id="MinorScale"></p>
+            </div>
+
+            <div id="chords">
+                <div id="firstChords">
+                    <div id="Ichord">
+                        <label for="I">I.</label>
+                        <button type="button" id="I" class="chord"></button>
+                    </div>
+                    <div id="IIchord">
+                        <label for="II">II.</label>
+                        <button type="button" id="II" class="chord"></button>
+                    </div>
+                </div>
+                <div id="secondChords">
+                    <div id="IIIchord">
+                        <label for="III">III.</label>
+                        <button type="button" id="III" class="chord"></button>
+                    </div>
+                    <div id="IVchord">
+                        <label for="IV">IV.</label>
+                        <button type="button" id="IV" class="chord"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/script.js"></script>
+</body>
+</html>

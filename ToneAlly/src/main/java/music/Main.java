@@ -1,59 +1,86 @@
 package music;
 
-import music.Notes.*;
 import java.util.Scanner;
+
 import static music.Notes.*;
-import music.Scale.*;
+import static music.Notes.Chromatic.*;
 
-public class Main 
-{
-    // Used to return all notes of major scale to be used by SpringBoot controller
-    public static String [] majorScale(String key)
+public class Main {
+
+
+
+    public static String inputString (String message)
     {
-        Scale majorScale = new Scale(key);
+        Scanner scanner = new Scanner(System.in);
+        String answer;
 
-        return majorScale.getMajor();
+        System.out.println(message);
+        answer = scanner.nextLine();
+
+        return answer;
     }
 
-    // Used to return all notes of minor scale to be used by SpringBoot controller
-    public static String [] minorScale(String key)
-    {
-        Scale minorScaleScale = new Scale(key);
+    public static String [] majorScale(String text){
+        String [] allNotes = Chromatic.getAllNotes();
+        int index = Chromatic.getIndex(text);
+        String [] chromatic = test2(allNotes,index);
 
-        return minorScale.getMinor();
+        String [] majorScale = getMajor(chromatic);
+        return majorScale;
     }
 
-    public static String [] chordNotes(String root, String tone)
-    {
+    public static String [] minorScale(String text){
+        String [] allNotes = Chromatic.getAllNotes();
+        int index = Chromatic.getIndex(text);
+        String [] chromatic = test2(allNotes,index);
+
+        String [] minorScale = getMinor(chromatic);
+        return minorScale;
+    }
+
+    public static String [] chordNotes(String root, String tone){
         String [] chord = getChord(root,tone);
 
         return chord;
     }
 
-    // Used by SpringBoot controller to send names of the chords in the recomended chord progressions
-    public static String chordName(String root, String tone, int position)
-    {
+    public static String chordName(String root, String tone, int position){
         String [] allNotes = Chromatic.getAllNotes();
         int index = Chromatic.getIndex(root);
 
-        String [] test = sortByKey(allNotes, index);
+        String [] test = test2(allNotes, index);
+        String [] scale  = new String [7];
 
-        String chord = test[position];
+        if(tone.equals("M")){
+            scale = getMajor(test);
+        }
+        else{
+            scale = getMinor(test);
+        }
+
+        if(position != 0 && position != 3 && position != 4 && tone.equals("M")){
+
+            tone = "m";
+        }
+         else if (position != 0 && position != 1 && position != 3 && position != 4 && tone.equals("m")) {
+            tone = "M";
+        }
+
+
+        String chord = scale[position];
         chord = chord + tone;
 
         return chord;
     }
 
-    // Used to return all notes of the modes to be used by SpringBoot controller
-    public static String[] mode(int index, String key, String tone)
-    {
-        Scale mode = new Scale(key);
+    public static String[] mode(int index, String modeName){
 
-        return mode.getMode(index, tone);
+        return getMode(index, modeName);
     }
 
-    public static void main(String[] args) 
-    {
+    public static void main(String[] args) {
 
+
+        // background: linear-gradient( to right,rgb(40, 40, 40), rgb(60, 60, 60), rgb(40, 40, 40));
+        }
     }
-}
