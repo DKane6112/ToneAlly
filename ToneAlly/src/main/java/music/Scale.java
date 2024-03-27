@@ -6,8 +6,8 @@ class Scale extends Notes{
     public Scale(String note){
 
         int start = Notes.getIndex(note);
-        String[] chromatic = new String[length];
         String [] notes = this.getAllNotes();
+        this.chromatic = new String[notes.length];
 
         for(int i = 0; i < notes.length; i++)
         {
