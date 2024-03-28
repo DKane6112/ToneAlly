@@ -101,15 +101,3 @@ function getChordName(position) {
             alert("There was an error: " + error);
         });
 }
-
-function scalesButton(){
-    location.reload();
-}
-
-function goToAnalyse() {
-    window.location.href = "/ap/analyse";
-}
-
-function goToHome() {
-    window.location.href = "/";
-}

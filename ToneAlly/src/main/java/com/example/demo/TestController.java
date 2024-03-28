@@ -5,10 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import music.Notes.*;
 import static music.Main.*;
 import java.util.Arrays;
-import static music.Main.chordName;
-import static music.Notes.Chromatic.test2;
-import static music.Notes.getChord;
-import static music.Notes.getMode;
+
+
 
 
 @Controller
@@ -22,20 +20,12 @@ public class TestController
         return "index";
     }
 
-    @GetMapping("/analyse")
-    public String analyse()
-    {
-        return "analyse";
-    }
-
     @GetMapping("/run")
     @ResponseBody
     public String runLogic(@RequestParam String text)
     {
-        String [] allNotes = Chromatic.getAllNotes();
-        int index = Chromatic.getIndex(text);
-        String [] test = test2(allNotes, index);
-        String toReturn = Arrays.toString(test);
+        String [] chromatic = chromatic(text);
+        String toReturn = Arrays.toString(chromatic);
 
         try
         {
@@ -84,26 +74,26 @@ public class TestController
         }
     }
 
-    @GetMapping("/run/mode")
-    @ResponseBody
-    public String runMode(@RequestParam String text)
-    {
-        String [] test = text.split(",");
-        int pos = Integer.parseInt(test[0]);
-        String key = test[1];
-        String mode = Arrays.toString(getMode(pos,key));
-
-        try
-        {
-            return mode;
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            return "Something went wrong";
-        }
-    }
-
+//    @GetMapping("/run/mode")
+//    @ResponseBody
+//    public String runMode(@RequestParam String text)
+//    {
+//        String [] data = text.split(",");
+//        int pos = Integer.parseInt(data[0]);
+//        String key = data[1];
+//        String mode = Arrays.toString(mode(pos,key));
+//
+//        try
+//        {
+//            return mode;
+//        }
+//        catch (Exception e)
+//        {
+//            e.printStackTrace();
+//            return "Something went wrong";
+//        }
+//    }
+//
     @GetMapping("/run/chordName")
     @ResponseBody
     public String runChordName(@RequestParam String text)

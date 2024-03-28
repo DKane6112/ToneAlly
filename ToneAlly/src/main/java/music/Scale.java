@@ -1,3 +1,4 @@
+package music;
 class Scale extends Notes{
 
     private String[] chromatic;
@@ -5,7 +6,7 @@ class Scale extends Notes{
 
     public Scale(String note){
 
-        int start = Notes.getIndex(note);
+        int start = this.getIndex(note);
         String [] notes = this.getAllNotes();
         this.chromatic = new String[notes.length];
 
@@ -19,6 +20,10 @@ class Scale extends Notes{
         }
     }
 
+    public String[] getChromatic(){
+
+        return this.chromatic;
+    }
     public String[] getMajor()
     {
 
@@ -71,7 +76,7 @@ class Scale extends Notes{
 
         String[] mode = new String[7];
 
-        if(String.equals("Major")){
+        if(tone.equals("Major")){
 
             mode = this.getMajor();
 
@@ -82,7 +87,7 @@ class Scale extends Notes{
         }
 
 
-        for(int i = 0; i < length; i++)
+        for(int i = 0; i < mode.length; i++)
         {
             mode[i] = mode[start];
             start = start + 1;

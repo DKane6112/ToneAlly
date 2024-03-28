@@ -1,71 +1,45 @@
 package music;
 
+import music.Notes.*;
 import java.util.Scanner;
-
 import static music.Notes.*;
-import static music.Notes.Chromatic.*;
+import music.Scale.*;
 
-public class Main {
-
-
-
-    public static String inputString (String message)
+public class Main
+{
+    public static String[] chromatic(String key){
+        Scale chromatic = new Scale(key);
+        return chromatic.getChromatic();
+    }
+    // Used to return all notes of major scale to be used by SpringBoot controller
+    public static String [] majorScale(String key)
     {
-        Scanner scanner = new Scanner(System.in);
-        String answer;
+        Scale majorScale = new Scale(key);
 
-        System.out.println(message);
-        answer = scanner.nextLine();
-
-        return answer;
+        return majorScale.getMajor();
     }
 
-    public static String [] majorScale(String text){
-        String [] allNotes = Chromatic.getAllNotes();
-        int index = Chromatic.getIndex(text);
-        String [] chromatic = test2(allNotes,index);
+    // Used to return all notes of minor scale to be used by SpringBoot controller
+    public static String [] minorScale(String key)
+    {
+        Scale minorScale = new Scale(key);
 
-        String [] majorScale = getMajor(chromatic);
-        return majorScale;
+        return minorScale.getMinor();
     }
 
-    public static String [] minorScale(String text){
-        String [] allNotes = Chromatic.getAllNotes();
-        int index = Chromatic.getIndex(text);
-        String [] chromatic = test2(allNotes,index);
-
-        String [] minorScale = getMinor(chromatic);
-        return minorScale;
-    }
-
-    public static String [] chordNotes(String root, String tone){
-        String [] chord = getChord(root,tone);
-
-        return chord;
-    }
-
-    public static String chordName(String root, String tone, int position){
-        String [] allNotes = Chromatic.getAllNotes();
-        int index = Chromatic.getIndex(root);
-
-        String [] test = test2(allNotes, index);
-        String [] scale  = new String [7];
+    // Used by SpringBoot controller to send names of the chords in the recomended chord progressions
+    public static String chordName(String root, String tone, int position)
+    {
+        Scale chromatic = new Scale(root);
+        String [] scale;
 
         if(tone.equals("M")){
-            scale = getMajor(test);
+            scale = chromatic.getMajor();
         }
-        else{
-            scale = getMinor(test);
+        else
+        {
+            scale = chromatic.getMinor();
         }
-
-        if(position != 0 && position != 3 && position != 4 && tone.equals("M")){
-
-            tone = "m";
-        }
-         else if (position != 0 && position != 1 && position != 3 && position != 4 && tone.equals("m")) {
-            tone = "M";
-        }
-
 
         String chord = scale[position];
         chord = chord + tone;
@@ -73,14 +47,32 @@ public class Main {
         return chord;
     }
 
-    public static String[] mode(int index, String modeName){
+    public static String [] chord(String note, String tone)
+    {
+        Scale chromatic = new Scale(note);
+        String [] scale;
 
-        return getMode(index, modeName);
-    }
-
-    public static void main(String[] args) {
-
-
-        // background: linear-gradient( to right,rgb(40, 40, 40), rgb(60, 60, 60), rgb(40, 40, 40));
+        if(tone.equals("Major")){
+            scale = chromatic.getMajor();
         }
+        else
+        {
+            scale = chromatic.getMinor();
+        }
+
+        return new String[]{scale[0],scale[2],scale[4]};
     }
+
+    // Used to return all notes of the modes to be used by SpringBoot controller
+    public static String[] mode(int index, String key, String tone)
+    {
+        Scale mode = new Scale(key);
+
+        return mode.getMode(index, tone);
+    }
+
+    public static void main(String[] args)
+    {
+
+    }
+}
