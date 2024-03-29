@@ -1,7 +1,11 @@
 package music;
+
+import java.util.HashMap;
+
 class Scale extends Notes{
 
     private String[] chromatic;
+    private HashMap<Integer, String> chordTones = new HashMap<>();
 
 
     public Scale(String note){
@@ -38,6 +42,32 @@ class Scale extends Notes{
         majorScale[6] = chromatic[11];
 
         return majorScale;
+    }
+
+    public HashMap<Integer, String> getChordTones(String tone) {
+        if(tone.equals("major")){
+            String[] major = getMajor();
+            chordTones.put(0,"major");
+            chordTones.put(1,"minor");
+            chordTones.put(2,"minor");
+            chordTones.put(3,"major");
+            chordTones.put(4,"major");
+            chordTones.put(5,"minor");
+            chordTones.put(6,"minor");
+        }
+        else
+        {
+            String[] minor = getMinor();
+            chordTones.put(0,"minor");
+            chordTones.put(1,"minor");
+            chordTones.put(2,"major");
+            chordTones.put(3,"minor");
+            chordTones.put(4,"minor");
+            chordTones.put(5,"major");
+            chordTones.put(6,"major");
+
+        }
+        return chordTones;
     }
 
     public String[] getMinor()
