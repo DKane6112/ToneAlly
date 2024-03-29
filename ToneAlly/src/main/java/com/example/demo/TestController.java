@@ -5,8 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import music.Notes.*;
 import static music.Main.*;
 import java.util.Arrays;
-
-
+import java.util.HashMap;
 
 
 @Controller
@@ -20,57 +19,31 @@ public class TestController
         return "index";
     }
 
+    @GetMapping("/analyse")
+    public String analyse()
+    {
+        return "analyse";
+    }
+
     @GetMapping("/run")
     @ResponseBody
-    public String runLogic(@RequestParam String text)
+    public HashMap<String,String[]> runLogic(@RequestParam String text)
     {
-        String [] chromatic = chromatic(text);
-        String toReturn = Arrays.toString(chromatic);
+
+        HashMap<String,String[]> scales = new HashMap<>();
+        scales.put("chromatic", chromatic(text));
+        scales.put("major", majorScale(text));
+        scales.put("minor", minorScale(text));
+
 
         try
         {
-            return toReturn;
+            return scales;
         }
         catch (Exception e)
         {
             e.printStackTrace();
-            return "Something went wrong";
-        }
-    }
-
-    @GetMapping("/run/major")
-    @ResponseBody
-    public String runMajor(@RequestParam String text)
-    {
-        String [] majorScale = majorScale(text);
-        String toReturn = Arrays.toString(majorScale);
-
-        try
-        {
-            return toReturn;
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            return "Something went wrong";
-        }
-    }
-
-    @GetMapping("/run/minor")
-    @ResponseBody
-    public String runMinor(@RequestParam String text)
-    {
-        String [] minorScale = minorScale(text);
-        String toReturn = Arrays.toString(minorScale);
-
-        try
-        {
-            return toReturn;
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            return "Something went wrong";
+            return scales;
         }
     }
 
@@ -96,24 +69,28 @@ public class TestController
 //
     @GetMapping("/run/chordName")
     @ResponseBody
-    public String runChordName(@RequestParam String text)
+    public HashMap<String,String> runChordName(@RequestParam String text)
     {
-        String [] test = text.split(",");
-        String root = test[0];
-        String tone = test[1];
-        int pos = Integer.parseInt(test[2]);
+        HashMap<String,String> chords = new HashMap<>();
+        String [] data = text.split(",");
+        String root = data[0];
+        String tone = data[1];
+        String genre = data[2];
 
-        String chord = chordName(root,tone,pos);
+        chords.put("Ichord",chordName(root,tone,genre, 0));
+        chords.put("IIchord",chordName(root,tone,genre, 1));
+        chords.put("IIIchord",chordName(root,tone,genre,2));
+        chords.put("IVchord",chordName(root,tone,genre,3));
 
 
         try
         {
-            return chord;
+            return chords;
         }
         catch (Exception e)
         {
             e.printStackTrace();
-            return "Something went wrong";
+            return chords;
         }
     }
 

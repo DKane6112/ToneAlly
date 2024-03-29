@@ -4,19 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oleo+Script:wght@400;700&display=swap" rel="stylesheet">
     <title>ToneAlly</title>
 </head>
 <body>
     <div class="gridArea">
         <header id="header">
-            <h1><img id="favicon" src="favicon.ico" alt="ToneAlly Logo">ToneAlly</h1>
+            <h1><img id="favicon" src="/favicon.ico" alt="ToneAlly Logo">ToneAlly</h1>
         </header>
 
         <nav id="nav">
-            <a id="about" class="navButton" onclick="goToAnalyse()">About</a>
-            <a id="analysis" class="navButton" onclick="goToAnalyse()">Analyse</a>
-            <a id="refresh" class="navButton" onclick="scalesButton()">Create</a>
+            <a id="about" class="navButton" href="/">About</a>
+            <a id="analysis" class="navButton" href="/app/analyse">Analyse</a>
+            <a id="refresh" class="navButton" href="/">Create</a>
         </nav>
         
         <section id="userInput">
@@ -39,8 +41,8 @@
     
                 <label for="mood">Mood:</label>
                 <select id="mood" name="mood">
-                    <option value="M">Happy</option>
-                    <option value="m">Sad</option>
+                    <option value="major">Happy</option>
+                    <option value="minor">Sad</option>
                 </select>
 
                 <label for="genre">Genre:</label>
@@ -50,7 +52,7 @@
                     <option value="jazz">Jazz</option>
                 </select>
     
-                <button type="button" onclick="buttonClicked(); getMajor(); getMinor(); getChordName(0); getChordName(3); getChordName(5); getChordName(4);">Submit</button>
+                <button type="button" id="submit">Submit</button>
             </form>
         </section>
     
@@ -68,28 +70,49 @@
             </div>
 
             <div id="chords">
-                <div id="firstChords">
-                    <div id="Ichord">
-                        <label for="I">I.</label>
-                        <button type="button" id="I" class="chord"></button>
+                <label for="chordNames">Chord Progression: </label>
+                <div id="chordNames">
+                    <div class="chordName">
+                    <p id="I">
+                    </p>
+                        <div class="image-container" id="imgI">
+                            <img src="/img/chords/Amajor.png" alt="A Major Chord Diagram" id="firstChordImage">
+                        </div>
                     </div>
-                    <div id="IIchord">
-                        <label for="II">II.</label>
-                        <button type="button" id="II" class="chord"></button>
+
+                    <div class="chordName">
+                    <p id="II"></p>
+                        <div class="image-container" id="imgII">
+                            <img src="/img/chords/Amajor.png" alt="A Major Chord Diagram" id="secondChordImage">
+                        </div>
                     </div>
-                </div>
-                <div id="secondChords">
-                    <div id="IIIchord">
-                        <label for="III">III.</label>
-                        <button type="button" id="III" class="chord"></button>
+
+                    <div class="chordName">
+                    <p id="III"></p>
+                        <div class="image-container" id="imgIII">
+                            <img src="/img/chords/Amajor.png" alt="A Major Chord Diagram" id="thirdChordImage">
+                        </div>
                     </div>
-                    <div id="IVchord">
-                        <label for="IV">IV.</label>
-                        <button type="button" id="IV" class="chord"></button>
+
+                    <div class="chordName">
+                    <p id="IV"></p>
+                        <div class="image-container" id="imgIV">
+                            <img src="/img/chords/Amajor.png" alt="Chord Diagram" id="fourthChordImage">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <footer>
+            <div>
+                <a href="#"><img src="/img/li.png" alt="Linkedin Icon" class="icon"></a>
+                <a href="#"><img src="/img/gh.png" alt="gitHub Icon" class="icon"></a>
+                <a href="#"><img src="/img/insta.png" alt="Instagram Icon" class="icon"></a>
+                <a href="#"><img src="/img/twit.png" alt="Twitter Icon" class="icon"></a>
+                <a href="#"><img src="/img/fbook.png" alt="Facebook Icon" class="icon"></a>
+            </div>
+            <p><i>Copyright&copy; 2024 Dylan Kane</i></p>
+        </footer>
     </div>
     <script src="/script.js"></script>
 </body>
