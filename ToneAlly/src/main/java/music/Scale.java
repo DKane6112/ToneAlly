@@ -46,7 +46,7 @@ class Scale extends Notes{
 
     public HashMap<Integer, String> getChordTones(String tone) {
         if(tone.equals("major")){
-            String[] major = getMajor();
+//            String[] major = getMajor();
             chordTones.put(0,"major");
             chordTones.put(1,"minor");
             chordTones.put(2,"minor");
@@ -57,7 +57,7 @@ class Scale extends Notes{
         }
         else
         {
-            String[] minor = getMinor();
+//            String[] minor = getMinor();
             chordTones.put(0,"minor");
             chordTones.put(1,"minor");
             chordTones.put(2,"major");

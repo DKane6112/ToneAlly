@@ -1,6 +1,9 @@
 package music;
 
 import music.Notes.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 import static music.Notes.*;
 import music.Scale.*;
@@ -40,52 +43,44 @@ public class Main
         {
             scale = chromatic.getMinor();
         }
-
-        int[] chordProgression = chordProgression(genre);
-        String chord = scale[chordProgression[pos]];
-        chord = chord + chromatic.getChordTones(tone).get(chordProgression[pos]);
+        ChordProgression progression = new ChordProgression(genre);
+        int chordRoot = progression.getChord(pos);
+        String chord = scale[chordRoot];
+        chord = chord + chromatic.getChordTones(tone).get(chordRoot);
 
         return chord;
     }
 
-    public static int[] chordProgression(String genre){
-        int[] progression = new int[4];
-        if(genre.equals("rock")){
-            progression[0] = 0;
-            progression[1] = 3;
-            progression[2] = 4;
-            progression[3] = 6;
-        }
-        else if(genre.equals("pop")){
-            progression[0] = 0;
-            progression[1] = 3;
-            progression[2] = 5;
-            progression[3] = 4;
-        }
-        else{
-            progression[0] = 1;
-            progression[1] = 4;
-            progression[2] = 3;
-            progression[3] = 0;
+    public static ArrayList<String[]> goodScales(String[] chords)
+    {
+        ArrayList<Chord> list = new ArrayList<>();
+
+        for (int i = 0; i<chords.length; i = i+2) {
+            Chord chord = new Chord(chords[i],chords[i+1]);
+            list.add(chord);
         }
 
-        return progression;
+        ChordProgression progression = new ChordProgression(list);
+
+        ArrayList<String[]> goodScales = progression.getGoodScales();
+
+        return goodScales;
     }
 
-    public static String [] chord(String note, String tone)
+    public static ArrayList<String[]> matchingScales(String[] chords)
     {
-        Scale chromatic = new Scale(note);
-        String [] scale;
+        ArrayList<Chord> list = new ArrayList<>();
 
-        if(tone.equals("M")){
-            scale = chromatic.getMajor();
-        }
-        else
-        {
-            scale = chromatic.getMinor();
+        for (int i = 0; i<chords.length; i = i+2) {
+            Chord chord = new Chord(chords[i],chords[i+1]);
+            list.add(chord);
         }
 
-        return new String[]{scale[0],scale[2],scale[4]};
+        ChordProgression progression = new ChordProgression(list);
+
+        ArrayList<String[]> goodScales = progression.getMatchingScales();
+
+        return goodScales;
     }
 
     // Used to return all notes of the modes to be used by SpringBoot controller

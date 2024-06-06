@@ -2,9 +2,10 @@ package com.example.demo;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import music.Notes.*;
+
 import static music.Main.*;
-import java.util.Arrays;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -91,6 +92,42 @@ public class TestController
         {
             e.printStackTrace();
             return chords;
+        }
+    }
+
+    @GetMapping("/run/matching")
+    @ResponseBody
+    public ArrayList<String[]> runMatching(@RequestParam String text)
+    {
+        String [] data = text.split(",");
+        ArrayList<String[]> matchingScales = matchingScales(data);
+
+        try
+        {
+            return matchingScales;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return matchingScales;
+        }
+    }
+
+    @GetMapping("/run/good")
+    @ResponseBody
+    public ArrayList<String[]> runGood(@RequestParam String text)
+    {
+        String [] data = text.split(",");
+        ArrayList<String[]> goodScales = goodScales(data);
+
+        try
+        {
+            return goodScales;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return goodScales;
         }
     }
 
