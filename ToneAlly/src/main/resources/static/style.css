@@ -1,0 +1,191 @@
+body{
+    margin: 0;
+    margin-top: .5rem;
+    padding: 0;
+    background-color: #00001b;
+
+}
+.gridArea{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    gap: 1rem;
+    grid-template-areas:
+        "header header header"
+        "nav nav nav"
+        "form form form"
+        "main main main"
+        ". footer .";
+}
+
+#header{
+    color:#ff7272;
+    font-family: "Oleo Script", system-ui;
+    grid-area: header;
+    height: fit-content;
+    padding: .5rem;
+    margin: 0;
+}
+
+h1{
+    margin: 0;
+}
+
+#favicon{
+    width: 2rem;
+    height: auto;
+    border-radius: 6px;
+}
+
+#nav{
+    display: flex;
+    justify-content: space-evenly;
+    grid-area: nav;
+    border-top: solid .1rem #e5f2fd;
+    border-bottom: solid .1rem #e5f2fd;
+    margin: 0;
+}
+
+.navButton{
+    color: #e5f2fd;
+    border: none;
+    border-radius: 6px;
+    padding: .5rem;
+    margin: .5rem;
+    cursor: pointer;
+}
+
+.navButton:hover{
+    color: #ff7272;
+}
+
+#userInput{
+    display: flex;
+    justify-content: space-evenly;
+    grid-area: form;
+    padding: 1rem;
+    margin: 0;
+}
+
+#myForm{
+    color:#e5f2fd;
+    border-bottom: solid .1rem #e5f2fd;
+    padding: 1rem;
+    margin: 0;
+} 
+
+select{
+    background-color: #00001b;
+    color: #e5f2fd;
+    border: .1rem solid #e5f2fd;
+    border-radius: 6px;
+    
+}
+
+button{
+    margin: 0 auto;
+    background: none;
+    color: #e5f2fd;
+    border: solid .1rem #e5f2fd;
+    border-radius: 6px;
+    margin-left: .5rem;
+    padding: .2rem; 
+    font-size: .9rem;
+}
+
+button:hover{
+    
+    color: #ff7272;
+    cursor: pointer;
+}
+
+#result{
+    display: none;
+    justify-content: space-around;
+    align-items: baseline;
+    grid-area: main;
+    padding: 1rem;
+    margin: 0;
+}
+
+#scales{
+    color: #e5f2fd;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#chords{
+    color: #e5f2fd;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+#chordNames{
+    display: flex;
+    align-items: baseline;
+    margin: .5rem;
+    gap: .5rem;
+}
+
+.chordName {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+.chordName p {
+    position: relative;
+    display: inline-block;
+    margin: .5rem;
+
+}
+
+.chordName p:hover {
+    color: #ff7272;
+
+}
+
+.image-container {
+    display: none;
+    position: absolute;
+    border: solid 1.1rem rgba(0, 0, 27, 0);
+    z-index: -1;
+}
+
+.image-container img{
+    width: 15rem;
+    height: auto;
+    border-radius: 6px;
+    margin: .5rem;
+
+}
+
+
+footer{
+
+    grid-area: footer;
+    padding: .5rem;
+
+}
+
+footer p{
+    font-family: "Roboto", sans-serif;
+    color: #cbe7ff;
+    font-size: .7rem;
+}
+
+.icon{
+    max-width: 1.5rem;
+    max-height: 1.5rem;
+    background-color: #ff7272;
+    border: .1rem solid #cbe7ff;
+    border-radius: 1rem;
+}
+
+
+
+
