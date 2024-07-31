@@ -8,26 +8,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-@org.springframework.stereotype.Controller
+@RestController
 @RequestMapping("/app")
 public class Controller
 {
 
-    @GetMapping("/")
-    public String index()
-    {
-        return "index";
-    }
-
-    @GetMapping("/analyse")
-    public String analyse()
-    {
-        return "analyse";
-    }
-
-    @GetMapping("/run")
+    @GetMapping("/scales")
     @ResponseBody
-    public HashMap<String,String[]> runLogic(@RequestParam String text)
+    public HashMap<String,String[]> runScales(@RequestParam String text)
     {
 
         HashMap<String,String[]> scales = new HashMap<>();
@@ -47,7 +35,7 @@ public class Controller
         }
     }
 
-//    @GetMapping("/run/mode")
+//    @GetMapping("/run/modes")
 //    @ResponseBody
 //    public String runMode(@RequestParam String text)
 //    {
@@ -67,7 +55,7 @@ public class Controller
 //        }
 //    }
 //
-    @GetMapping("/run/chordName")
+    @GetMapping("/chords")
     @ResponseBody
     public HashMap<String,String> runChordName(@RequestParam String text)
     {
@@ -94,7 +82,7 @@ public class Controller
         }
     }
 
-    @GetMapping("/run/matching")
+    @GetMapping("/matchingScales")
     @ResponseBody
     public ArrayList<String[]> runMatching(@RequestParam String text)
     {
@@ -112,7 +100,7 @@ public class Controller
         }
     }
 
-    @GetMapping("/run/good")
+    @GetMapping("/goodScales")
     @ResponseBody
     public ArrayList<String[]> runGood(@RequestParam String text)
     {
