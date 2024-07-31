@@ -1,17 +1,13 @@
 package com.ToneAlly.app;
 
 
-import org.springframework.boot.autoconfigure.cassandra.CassandraProperties;
 import org.springframework.boot.web.server.Compression;
 import org.springframework.boot.web.server.ErrorPage;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 
-import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 @Configuration
 public class ServerConfiguration implements WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> {
