@@ -4,36 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ChordProgression {
-    private String genre = "";
-    private ArrayList<Integer> progression = new ArrayList<>();
     private ArrayList<Chord> userProgression = new ArrayList<>();
-
-    public ChordProgression(String genre){
-        this.genre = genre;
-        if(genre.equals("rock")){
-            progression.add(0);
-            progression.add(3);
-            progression.add(4);
-            progression.add(6);
-        } else if (genre.equals("pop")) {
-            progression.add(0);
-            progression.add(3);
-            progression.add(5);
-            progression.add(4);
-        } else {
-            progression.add(1);
-            progression.add(4);
-            progression.add(3);
-            progression.add(0);
-        }
-    }
 
     public ChordProgression(ArrayList<Chord> progression){
         this.userProgression = progression;
-    }
-
-    public int getChord(int pos){
-        return progression.get(pos);
     }
 
     public ArrayList<String[]> getGoodScales(){

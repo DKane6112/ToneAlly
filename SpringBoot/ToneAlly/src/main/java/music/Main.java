@@ -1,12 +1,6 @@
 package music;
 
-import music.Notes.*;
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
-import static music.Notes.*;
-import music.Scale.*;
 
 public class Main
 {
@@ -43,7 +37,7 @@ public class Main
         {
             scale = chromatic.getMinor();
         }
-        ChordProgression progression = new ChordProgression(genre);
+        GenreProgression progression = new GenreProgression(genre);
         int chordRoot = progression.getChord(pos);
         String chord = scale[chordRoot];
         chord = chord + chromatic.getChordTones(tone).get(chordRoot);
