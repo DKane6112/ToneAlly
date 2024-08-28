@@ -10,8 +10,8 @@ public class ChordProgression {
         this.userProgression = progression;
     }
 
-    public ArrayList<String[]> getGoodScales(){
-        ArrayList<String[]> goodScales = new ArrayList<>();
+    public HashMap<String,String[]> getGoodScales(){
+        HashMap<String,String[]> goodScales = new HashMap<>();
         ArrayList<String> badNotes = new ArrayList<>();
 
         for (Chord c:userProgression) {
@@ -20,6 +20,7 @@ public class ChordProgression {
                 badNotes.add(n);
             }
         }
+
 
         String[] notes = {"A","A#","B","C","C#","D","D#","E","F","F#","G","G#"};
 
@@ -47,18 +48,18 @@ public class ChordProgression {
             }
 
             if(addMinor){
-                goodScales.add(minor);
+                goodScales.put(notes[i]+ " Minor",minor);
 
             }
             if(addMajor){
-                goodScales.add(major);
+                goodScales.put(notes[i]+" Major", major);
             }
         }
         return goodScales;
     }
 
-    public ArrayList<String[]> getMatchingScales(){
-        ArrayList<String[]> goodScales = new ArrayList<>();
+    public HashMap<String,String[]> getMatchingScales(){
+        HashMap<String,String[]> goodScales = new HashMap<>();
         HashMap<String,Integer> goodNotes = new HashMap<>();
 
         for (Chord c:userProgression) {
@@ -92,11 +93,11 @@ public class ChordProgression {
             }
 
             if(addMinor){
-                goodScales.add(minor);
+                goodScales.put(notes[i]+" Minor",minor);
 
             }
             if(addMajor){
-                goodScales.add(major);
+                goodScales.put(notes[i] +" Major", major);
             }
         }
         return goodScales;

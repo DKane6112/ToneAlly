@@ -1,6 +1,7 @@
 package music;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Main
 {
@@ -45,7 +46,7 @@ public class Main
         return chord;
     }
 
-    public static ArrayList<String[]> goodScales(String[] chords)
+    public static HashMap<String, String[]> goodScales(String[] chords)
     {
         ArrayList<Chord> list = new ArrayList<>();
 
@@ -56,12 +57,12 @@ public class Main
 
         ChordProgression progression = new ChordProgression(list);
 
-        ArrayList<String[]> goodScales = progression.getGoodScales();
+        HashMap<String, String[]> goodScales = progression.getGoodScales();
 
         return goodScales;
     }
 
-    public static ArrayList<String[]> matchingScales(String[] chords)
+    public static HashMap<String, String[]> matchingScales(String[] chords)
     {
         ArrayList<Chord> list = new ArrayList<>();
 
@@ -72,7 +73,7 @@ public class Main
 
         ChordProgression progression = new ChordProgression(list);
 
-        ArrayList<String[]> goodScales = progression.getMatchingScales();
+        HashMap<String, String[]> goodScales = progression.getMatchingScales();
 
         return goodScales;
     }

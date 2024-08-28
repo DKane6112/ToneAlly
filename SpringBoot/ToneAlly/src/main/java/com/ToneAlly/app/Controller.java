@@ -2,18 +2,25 @@ package com.ToneAlly.app;
 
 import org.springframework.web.bind.annotation.*;
 
-import static music.Main.*;
-
-import java.util.ArrayList;
 import java.util.HashMap;
+
+import static music.Main.*;
 
 
 @RestController
+//@CrossOrigin(origins="http://localhost:3000")
 @RequestMapping("/app")
 public class Controller
 {
 
+    @GetMapping("/")
+    public String index()
+    {
+        return "index";
+    }
+
     @GetMapping("/scales")
+//    @CrossOrigin(origins="http://localhost:3000")
     @ResponseBody
     public HashMap<String,String[]> runScales(@RequestParam String text)
     {
@@ -22,6 +29,7 @@ public class Controller
         scales.put("chromatic", chromatic(text));
         scales.put("major", majorScale(text));
         scales.put("minor", minorScale(text));
+
 
 
         try
@@ -56,6 +64,7 @@ public class Controller
 //    }
 //
     @GetMapping("/chords")
+//    @CrossOrigin(origins="http://localhost:3000")
     @ResponseBody
     public HashMap<String,String> runChordName(@RequestParam String text)
     {
@@ -83,11 +92,14 @@ public class Controller
     }
 
     @GetMapping("/matchingScales")
+//    @CrossOrigin(origins="http://localhost:3000")
     @ResponseBody
-    public ArrayList<String[]> runMatching(@RequestParam String text)
+    public HashMap<String, String[]> runMatching(@RequestParam String text)
     {
         String [] data = text.split(",");
-        ArrayList<String[]> matchingScales = matchingScales(data);
+        HashMap<String, String[]> matchingScales = matchingScales(data);
+//        matchingScales.put("test", new String[]{"hi", "test"});
+
 
         try
         {
@@ -101,11 +113,12 @@ public class Controller
     }
 
     @GetMapping("/goodScales")
+//    @CrossOrigin(origins="http://localhost:3000")
     @ResponseBody
-    public ArrayList<String[]> runGood(@RequestParam String text)
+    public HashMap<String, String[]> runGood(@RequestParam String text)
     {
         String [] data = text.split(",");
-        ArrayList<String[]> goodScales = goodScales(data);
+        HashMap<String,String[]> goodScales = goodScales(data);
 
         try
         {
