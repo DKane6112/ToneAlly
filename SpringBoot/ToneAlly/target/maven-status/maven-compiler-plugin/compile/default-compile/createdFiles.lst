@@ -1,0 +1,14 @@
+music\Scale.class
+com\ToneAlly\app\WebConfig.class
+music\Main.class
+music\Rock.class
+music\ChordProgression.class
+music\Chord.class
+com\ToneAlly\app\Controller.class
+music\Pop.class
+music\Jazz.class
+music\Notes.class
+music\GenreProgression.class
+music\Genre.class
+com\ToneAlly\app\Application.class
+com\ToneAlly\app\ServerConfiguration.class
