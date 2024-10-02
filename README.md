@@ -17,3 +17,6 @@ Share your own music with ToneAlly and receive insights into what scales fit wit
 
 The analyse feature takes input from the user on the chords they have in their progression and returns a list of scales that fit allowing the user to build on their original chord progression and compose more.
 ![ToneAllyPreview5](https://github.com/user-attachments/assets/3ac8f4e7-470d-489c-a031-a626121a0e61)
+
+## Run
+To run this application clone the repository and open in IntelliJ, navigate to the application.java class file and run, the application will now be available in a browser at port 8081. I am planning to deploy this as a website soon but this is a temporary way that a user could access the tool.
