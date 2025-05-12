@@ -16,6 +16,30 @@ function ChordTool() {
         console.log("Key: ", key);
     }
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        log(e);
+        const response = await fetch("http://localhost:4000/prog", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ key, genre }),
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            let progression = data.chords[0];
+            for (let i = 1; i < data.chords.length; i++) {
+                progression = progression + " — " + data.chords[i];
+            }
+            setProgressions([progression]);
+            console.log(data);
+        } else {
+            console.error("Error fetching progressions");
+        }
+    }
+
     return (
     <div>
         <header class="hero">
@@ -25,7 +49,7 @@ function ChordTool() {
 
         <section class="form-card" aria-labelledby="generator-title">
             <h2 id="generator-title" class="sr-only">Chord Progression Generator</h2>
-            <form class="form" autoComplete="off">
+            <form class="form" autoComplete="off" onSubmit={handleSubmit}>
                 <div class="form__group">
                     <GenreCombo value={genre} onChange={setGenre} />
                 </div>
@@ -47,7 +71,7 @@ function ChordTool() {
                         ))}
                     </div>
                 </div>
-                <button type="submit" class="btn-submit" onClick= {log}>Generate Ideas</button>
+                <button type="submit" class="btn-submit">Generate Ideas</button>
             </form>
         </section>
 
