@@ -1,9 +1,13 @@
 class ChordGenerator {
     
-    constructor(key, genre) {
+    constructor(key, genre, previous) {
         this.key = key;
         this.genre = genre;
         this.random = Math.floor(Math.random() * 3) + 1;
+
+        while (this.random === previous) {
+            this.random = Math.floor(Math.random() * 3) + 1;
+        }
     }
 
     
@@ -41,7 +45,8 @@ class ChordGenerator {
         const prog = {
             key: this.key,
             genre: this.genre,
-            chords: [],           
+            chords: [],  
+            progression: this.random         
         };
         
         const progressions = progGenerator();
