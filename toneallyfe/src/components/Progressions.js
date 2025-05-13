@@ -36,7 +36,7 @@ export default function Results({ progressions = [] }) {
     <section className="results" aria-live="polite">
       <div className="results__header">
         <i className="fa-solid fa-lightbulb" />
-        <h3>Try these progressions</h3>
+        <h3>Try this progression</h3>
       </div>
 
       <div className="results__list">

@@ -1,12 +1,10 @@
+const ChordGenerator = require('../utils/chordGenerator');
+
 const progModel = {
     generateProg: async (key, genre) => {
-
-        const prog = {
-            key: key,
-            genre: genre,
-            chords: ["C", "G", "Am", "F"],           
-        };
-        return prog;
+        let generator = new ChordGenerator(key, genre);
+        let chords = generator.generateChords();
+        return chords;
     }
 }
 
