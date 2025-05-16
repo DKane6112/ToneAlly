@@ -10,7 +10,7 @@
 4. [Local Quick Start](#local-quick-start)
 5. [Project Structure](#project-structure)
 6. [API Reference](#api-reference)
-7. [Customization & Roadmap](#customization--roadmap)
+7. [Customisation & Roadmap](#customisation--roadmap)
 
 ---
 
@@ -28,8 +28,8 @@ Everything runs in the browser (React) with a lightweight Node + Express API tha
 ## Features
 | Category | Highlights |
 |----------|------------|
-| **Generator** | Pop/Rock/Jazz templates, Mixolydian toggle, copy-to-clipboard. |
-| **Scale Finder** | Bad-note filter (tritone avoidance) with major, minor & modal patterns. |
+| **Generator** | Pop/Rock/Jazz templates (more genres coming soon) |
+| **Scale Finder** | Bad-note filter (tritone avoidance) with major & minor patterns. |
 | **UI/UX** | • Responsive pill pickers & chip inputs<br>• Dark-mode toggle<br>• Slide-out mobile nav with backdrop. |
 | **Accessibility** | ARIA-friendly key & chord selectors, keyboard nav, screen-reader announcements. |
 | **Extensible** | Separate theory engine (`utils/`)—easy to add new modes, exotic chords, MIDI export. |
@@ -106,5 +106,6 @@ All responses are JSON. The front end handles formatting & rendering.
 | ------------------------------------------------ | ------------------------------------------------ |
 | Responsive UI, keyboard navigation, dark mode.   | Audio playback of chords (Web Audio API).        |
 | Mixolydian & custom bad-note exceptions.         | MIDI & MusicXML export.                          |
-|  | User favourites (localStorage) + shareable URLs. |
-|                     | PWA install prompt + offline cache.              |
+|                                                  | User favourites (localStorage) + shareable URLs. |
+|                                                  | PWA install prompt + offline cache.              |
+|                                                  | Add new genres                                   | 
