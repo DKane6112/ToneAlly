@@ -1,5 +1,6 @@
 const express = require('express');
 const progRoutes = require('./routes/progRoutes');
+const scaleRoutes = require('./routes/scaleRoutes');
 const cors = require('cors');
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(cors({
 }));
 
 app.use('/prog', progRoutes);
+app.use('/scale', scaleRoutes);
 
 app.listen(expressPort, () => {
   console.log(`Server is running on port ${expressPort}`);

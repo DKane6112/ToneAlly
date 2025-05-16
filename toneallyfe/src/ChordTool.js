@@ -7,8 +7,9 @@ import GenreCombo from "./components/GenreCombo.js";
 function ChordTool() {
     const [genre, setGenre] = useState("");
     const [key, setKey] = useState("C");
-    const NOTES = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
-    const [progressions, setProgressions] = useState(["I — V — vi — IV", "ii — V — I", "vi — IV — I — V"]);
+    const NOTES = ["C","D","F","G","A","B","C#","D#","F#","G#","A#","E"];
+    const [progressions, setProgressions] = useState([]);
+    const [previous, setPrevious] = useState(0);
 
     const log = (e) => {
         e.preventDefault();
@@ -24,7 +25,7 @@ function ChordTool() {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ key, genre }),
+            body: JSON.stringify({ key, genre, previous }),
         });
 
         if (response.ok) {
@@ -34,6 +35,7 @@ function ChordTool() {
                 progression = progression + " — " + data.chords[i];
             }
             setProgressions([progression]);
+            setPrevious(data.progression);
             console.log(data);
         } else {
             console.error("Error fetching progressions");
