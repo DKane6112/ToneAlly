@@ -41,7 +41,7 @@ Everything runs in the browser (React) with a lightweight Node + Express API tha
 |-------|-----------|
 | **Front End** | React 18, React Router 6, Font Awesome, optional Radix UI / shadcn. |
 | **Back End** | Node 18, Express 4, nanoid (IDs), Nodemon (dev). |
-| **Tooling**  | Vite 5 (or Create-React-App), dotenv, ESLint + Prettier, Jest (unit tests). |
+| **Tooling**  | Create-React-App, dotenv, ESLint + Prettier, Jest (unit tests). |
 
 ---
 
