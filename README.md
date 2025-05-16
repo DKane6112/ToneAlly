@@ -11,8 +11,6 @@
 5. [Project Structure](#project-structure)
 6. [API Reference](#api-reference)
 7. [Customization & Roadmap](#customization--roadmap)
-8. [Contributing](#contributing)
-9. [License](#license)
 
 ---
 
@@ -62,3 +60,51 @@ npm run dev:server     # runs nodemon src/server.js
 npm run dev:client     # vite dev
 
 # 4. Open http://localhost:3000
+```
+
+---
+
+## Project Structure
+
+```
+toneally/
+│
+├── client/                # React front end
+│   ├── src/
+│   │   ├── components/    # ChordChooser, ChordModal, Nav, etc.
+│   │   ├── pages/         # Home.jsx, Progressions.jsx, Scales.jsx
+│   │   ├── hooks/
+│   │   └── App.jsx
+│   └── public/
+│
+├── server/                # Node / Express API
+│   ├── controllers/
+│   ├── models/            # progModel.js, scaleModel.js
+│   ├── utils/             # chordGenerator.js, progGenerator.js, scaleGenerator.js
+│   └── server.js
+│
+├── docs/                  # screenshots, diagrams
+└── package.json           # workspaces: ["client","server"]
+```
+
+---
+
+## API Reference
+
+| Route    | Method | Body → Properties                | Response                                                         |
+| -------- | ------ | -------------------------------- | ---------------------------------------------------------------- |
+| `/prog`  | `POST` | `key` (string), `genre` (string) | `{ chords: ["C", "G", …], progression: [steps] }`                |
+| `/scale` | `POST` | `chords` (string\[])             | `{ scales: [{ key:"C", mode:"Ionian", notes:["C","D",…] }, …] }` |
+
+All responses are JSON. The front end handles formatting & rendering.
+
+---
+
+## Customisation & Roadmap
+
+| ✔️ Done                                          | 🚧 Planned                                       |
+| ------------------------------------------------ | ------------------------------------------------ |
+| Responsive UI, keyboard navigation, dark mode.   | Audio playback of chords (Web Audio API).        |
+| Mixolydian & custom bad-note exceptions.         | MIDI & MusicXML export.                          |
+|  | User favourites (localStorage) + shareable URLs. |
+|                     | PWA install prompt + offline cache.              |
