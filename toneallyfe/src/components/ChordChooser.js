@@ -5,7 +5,7 @@ const NOTES = [
   "C", "C#", "D", "D#", "E", "F",
   "F#", "G", "G#", "A", "A#", "B"
 ];
-const QUALS = ["", "m", "7", "maj7", "m7", "sus2", "sus4"];
+const QUALS = ["", "m", "7", " Maj7", "m7", "sus2", "sus4"];
 const SUGGESTIONS = NOTES.flatMap(n => QUALS.map(q => n + q));
 
 export default function ChordChooser({ chords, setChords }) {
@@ -60,9 +60,6 @@ export default function ChordChooser({ chords, setChords }) {
           value={draft}
           onChange={onChange}
           onKeyDown={onKeyDown}
-          /* Option A: auto-commit on blur too
-           * onBlur={() => { commitDraft(draft); setDraft(""); }}
-           */
           placeholder={chords.length ? "Add chord…" : "e.g. Am7"}
           autoComplete="off"
         />

@@ -10,26 +10,29 @@ function ScaleTool() {
     const [chords, setChords] = useState([]);
     const [scales, setScales] = useState([]);
 
-    const log = (e) => {
-        e.preventDefault();
-        console.log(scales);
-    }
-
     const handleSubmit = async e => {
         e.preventDefault();
         console.log("Chosen chords:", chords);
 
-    // 👉 replace with your real fetch
-    /* const res = await fetch("/api/scales", {
-         method:"POST",
-         headers:{ "Content-Type":"application/json" },
-         body: JSON.stringify({ chords })
-       });
-       const data = await res.json();
-       setScales(data.scales); */
-
-    // demo: fake response
-        setScales(["C major", "A minor", "G Mixolydian"]);
+        const response = await fetch("http://localhost:4000/scale", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ chords }),
+        });
+        
+        if (response.ok) {
+            let data = await response.json();
+            let scaleArray = [];
+            for (let i = 0; i < data.length; i++) {
+                scaleArray.push(data[i].key + ": " + data[i].scale.join(" "));
+            }
+            console.log("Response data:", data);
+            setScales(scaleArray);
+        } else {
+            console.error("Error fetching scales");
+        }
     };
 
     return (
