@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  server:
+    build: ./toneallybe
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+
+  client:
+    build:
+      context: ./toneallyfe
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - server
