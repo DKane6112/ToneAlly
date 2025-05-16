@@ -8,9 +8,10 @@
 2. [Features](#features)
 3. [Tech Stack](#tech-stack)
 4. [Local Quick Start](#local-quick-start)
-5. [Project Structure](#project-structure)
-6. [API Reference](#api-reference)
-7. [Customisation & Roadmap](#customisation--roadmap)
+5. [Docker Workflows](#docker-workflows)
+6. [Project Structure](#project-structure)
+7. [API Reference](#api-reference)
+8. [Customisation & Roadmap](#customisation--roadmap)
 
 ---
 
@@ -48,19 +49,39 @@ Everything runs in the browser (React) with a lightweight Node + Express API tha
 ## Local Quick Start
 
 ```bash
-# 1. Clone & install all deps
+# 1. Clone & install all dependencies
 git clone https://github.com/your-org/toneally.git
 cd toneally
 npm install            # root: installs both workspaces
 
 # 2. Start API (port 4000)
-npm run dev:server     # runs nodemon src/server.js
+npm run dev:toneallybe     # runs nodemon src/index.js
 
 # 3. Start React app (port 3000)
-npm run dev:client     # vite dev
+npm run dev:toneallyfe    # runs front-end (use second terminal)
 
 # 4. Open http://localhost:3000
 ```
+
+---
+
+## Docker Workflows
+🛠 Development (with hot-reload)
+```bash
+# Build & launch both services with live-reload
+docker compose -f docker-compose.dev.yml up --build
+```
+Client runs yarn start inside Node, with your source mounted and polling enabled.
+Server runs npm run dev (nodemon) inside Node, with automatic reload on changes.
+
+
+🚀 Production Preview
+```bash
+# Build & launch multi-stage (CRA → build → nginx) and production server
+docker compose up --build
+```
+Client serves the static /build output via Nginx on port 3000.
+Server runs node src/index.js on port 4000.
 
 ---
 
@@ -70,21 +91,25 @@ npm run dev:client     # vite dev
 toneally/
 │
 ├── client/                # React front end
+│   ├── public/
 │   ├── src/
-│   │   ├── components/    # ChordChooser, ChordModal, Nav, etc.
+│   │   ├── components/    # UI pieces: ChordChooser, ChordModal, Nav…
 │   │   ├── pages/         # Home.jsx, Progressions.jsx, Scales.jsx
-│   │   ├── hooks/
 │   │   └── App.jsx
-│   └── public/
+│   ├── Dockerfile         # dev Dockerfile (Node)
+│   ├── Dockerfile.prod    # production multi-stage (Node → nginx)
+│   └── package.json
 │
 ├── server/                # Node / Express API
 │   ├── controllers/
 │   ├── models/            # progModel.js, scaleModel.js
 │   ├── utils/             # chordGenerator.js, progGenerator.js, scaleGenerator.js
-│   └── server.js
+│   ├── Dockerfile         # Node Dockerfile (dev & prod)
+│   └── package.json
 │
-├── docs/                  # screenshots, diagrams
-└── package.json           # workspaces: ["client","server"]
+├── docker-compose.yml            # production setup
+├── docker-compose.dev.yml        # development setup
+└── README.md
 ```
 
 ---
@@ -94,7 +119,7 @@ toneally/
 | Route    | Method | Body → Properties                | Response                                                         |
 | -------- | ------ | -------------------------------- | ---------------------------------------------------------------- |
 | `/prog`  | `POST` | `key` (string), `genre` (string) | `{ chords: ["C", "G", …], progression: [steps] }`                |
-| `/scale` | `POST` | `chords` (string\[])             | `{ scales: [{ key:"C", mode:"Ionian", notes:["C","D",…] }, …] }` |
+| `/scale` | `POST` | `chords` (string\[])             | `{ scales: [{ key:"C Major", notes:["C","D",…] }, …] }` |
 
 All responses are JSON. The front end handles formatting & rendering.
 
