@@ -14,7 +14,7 @@ function ScaleTool() {
         e.preventDefault();
         console.log("Chosen chords:", chords);
 
-        const response = await fetch("http://localhost:4000/scale", {
+        const response = await fetch("https://toneally.onrender.com/scale", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

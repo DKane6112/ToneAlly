@@ -20,7 +20,7 @@ function ChordTool() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         log(e);
-        const response = await fetch("http://localhost:4000/prog", {
+        const response = await fetch("https://toneally.onrender.com/prog", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
