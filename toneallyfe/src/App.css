@@ -213,7 +213,7 @@ input[type="text"]:focus {
   border: 1px solid var(--clr-border);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .progression {
@@ -222,6 +222,7 @@ input[type="text"]:focus {
 }
 
 .copy-btn {
+  margin-left: .5rem;
   background: none;
   border: none;
   color: var(--clr-primary);
@@ -230,6 +231,19 @@ input[type="text"]:focus {
 }
 
 .copy-btn:hover {
+  color: var(--clr-primary-dark);
+}
+
+.play-btn {
+  font-size: larger;
+  background: none;
+  border: none;
+  color: var(--clr-primary);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.play-btn:hover {
   color: var(--clr-primary-dark);
 }
 
@@ -418,3 +432,88 @@ footer {
   margin-top: .5rem;
   color: var(--clr-primary);
 }
+
+
+/* Progression chord pills */
+.progression-chords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  
+}
+
+.progression__chord {
+  padding: 0.8rem 0.75rem;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  background: var(--clr-surface);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.progression__chord:hover,
+.progression__chord:focus {
+  background: var(--clr-primary);
+  color: #fff;
+  transform: translateY(-1px);
+  outline: none;
+}
+
+/* Chord diagram container */
+.chord-diagram {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+
+.chord-diagram__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-text-secondary);
+  border: 1px dashed var(--clr-border);
+  border-radius: var(--radius-md);
+  font-style: italic;
+}
+
+/* Close button */
+.close-diagram {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--clr-text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.close-diagram:hover {
+  color: var(--clr-text-primary);
+}
+
+/* Hint text */
+.hint {
+  margin-left: 0.5rem;
+  color: var(--clr-text-secondary);
+  font-size: 0.875rem;
+}
+
+.scales_chords_api img{
+  max-width: 80vw;
+  height: auto;
+}
+

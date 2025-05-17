@@ -30,11 +30,11 @@ function ChordTool() {
 
         if (response.ok) {
             const data = await response.json();
-            let progression = data.chords[0];
-            for (let i = 1; i < data.chords.length; i++) {
-                progression = progression + " — " + data.chords[i];
+            let progression = [];
+            for (let i = 0; i < data.chords.length; i++) {
+                progression.push(data.chords[i]);
             }
-            setProgressions([progression]);
+            setProgressions(progression);
             setPrevious(data.progression);
             console.log(data);
         } else {
