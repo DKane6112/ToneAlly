@@ -1,7 +1,25 @@
 // Home.jsx
 import { Link } from "react-router-dom";
+import { use, useEffect } from "react";
 
 export default function Home() {
+
+  useEffect(() => {
+    // api call to wake up the server
+    const wakeUpServer = async () => {
+
+      const response = await fetch("https://toneally.onrender.com/prog", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ key: "C", genre: "Pop", previous: 0 }),
+      });
+    };
+    wakeUpServer();
+  }
+  , []);
+
   return (
     <div>
       {/* hero ------------------------------------------------ */}
