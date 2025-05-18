@@ -3,6 +3,11 @@ import {playChord} from "../utils/playChord.js";
 
 function ProgressionCard({ progression, onSelectChord, order }) {
   let orderNumber = 0;
+
+  function incOrderNumber() {
+    orderNumber++;
+  }
+
   const handleCopy = async () => {
     await navigator.clipboard.writeText(progression.join(" — "));
     // TODO: show toast/snackbar
@@ -19,17 +24,20 @@ function ProgressionCard({ progression, onSelectChord, order }) {
     <div className="progression-card">
       <div className="progression-chords">
         {progression.map((p) => (
-          <button
-            key={p}
-            type="button"
-            className="progression__chord"
-            onClick={() => onSelectChord(p)}
-            onMouseUp={() => playChord(p)}
-            title={`Show fingering for ${p}`}
-          >
-            {p}
-          </button>
-
+          <div className="progression__chord-box">
+            <button
+              key={p}
+              type="button"
+              className="progression__chord"
+              onClick={() => onSelectChord(p)}
+              onMouseUp={() => playChord(p)}
+              title={`Show fingering for ${p}`}
+            >
+              {p}
+            </button>
+            <span className="progression__order">{order[orderNumber]}</span>
+            {incOrderNumber()}
+          </div>
         ))}
         
       </div>
@@ -46,7 +54,7 @@ function ProgressionCard({ progression, onSelectChord, order }) {
   );
 }
 
-export default function Results(progressions, order) {
+export default function Results({ progressions = [], order = [] }) {
   const [selectedChord, setSelectedChord] = useState(null);
   const ref = useRef(null);
 

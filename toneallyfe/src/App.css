@@ -461,11 +461,22 @@ footer {
   outline: none;
 }
 
+.progression__chord-box{
+  display:flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  margin: 0.5rem;
+}
+
 @media (max-width: 470px) {
   .progression__chord {
     padding: 0.8rem 0.7rem;
   }
+  .progression__chord-box{
+    margin: 0.1rem;
+  }
 }
+
 
 /* Chord diagram container */
 .chord-diagram {
