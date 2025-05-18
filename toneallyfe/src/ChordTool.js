@@ -10,6 +10,7 @@ function ChordTool() {
     const NOTES = ["C","D","F","G","A","B","C#","D#","F#","G#","A#","E"];
     const [progressions, setProgressions] = useState([]);
     const [previous, setPrevious] = useState(0);
+    const [ordered, setOrdered] = useState([]);
 
     const log = (e) => {
         e.preventDefault();
@@ -31,10 +32,13 @@ function ChordTool() {
         if (response.ok) {
             const data = await response.json();
             let progression = [];
+            let order = [];
             for (let i = 0; i < data.chords.length; i++) {
                 progression.push(data.chords[i]);
+                order.push(data.order[i]);
             }
             setProgressions(progression);
+            setOrdered(order);
             setPrevious(data.progression);
             console.log(data);
         } else {
@@ -77,7 +81,7 @@ function ChordTool() {
             </form>
         </section>
 
-        <Results progressions={progressions} />
+        <Results progressions={progressions} order= {ordered} />
 
         <footer>
             <p>&copy; 2025 ToneAlly. Crafted with <i class="fa-solid fa-heart">❤</i> for musicians everywhere.</p>

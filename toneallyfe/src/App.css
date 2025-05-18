@@ -212,6 +212,7 @@ input[type="text"]:focus {
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--clr-border);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
 }
@@ -437,8 +438,7 @@ footer {
 /* Progression chord pills */
 .progression-chords {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  
   
 }
 
@@ -459,6 +459,12 @@ footer {
   color: #fff;
   transform: translateY(-1px);
   outline: none;
+}
+
+@media (max-width: 470px) {
+  .progression__chord {
+    padding: 0.8rem 0.7rem;
+  }
 }
 
 /* Chord diagram container */

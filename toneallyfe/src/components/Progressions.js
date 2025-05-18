@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import {playChord} from "../utils/playChord.js";
 
-function ProgressionCard({ progression, onSelectChord }) {
+function ProgressionCard({ progression, onSelectChord, order }) {
+  let orderNumber = 0;
   const handleCopy = async () => {
     await navigator.clipboard.writeText(progression.join(" — "));
     // TODO: show toast/snackbar
@@ -28,29 +29,24 @@ function ProgressionCard({ progression, onSelectChord }) {
           >
             {p}
           </button>
+
         ))}
-        <button
-          type="button"
-          className="copy-btn"
-          onClick={handleCopy}
-          aria-label={`Copy progression ${progression.join(" — ")}`}
-        >
-          <i className="fa-regular fa-copy" /> Copy
-        </button>
+        
       </div>
+      
       <button
-          type="button"
-          className="play-btn"
-          onClick={playProgression}
-          aria-label={`Play progression ${progression.join(" — ")}`}
-          >
-          <i className="fa-solid fa-play" /> ▶
+        type="button"
+        className="play-btn"
+        onClick={playProgression}
+        aria-label={`Play progression ${progression.join(" — ")}`}
+      >
+        <i className="fa-solid fa-play" /> ▶
       </button>
     </div>
   );
 }
 
-export default function Results({ progressions = [] }) {
+export default function Results(progressions, order) {
   const [selectedChord, setSelectedChord] = useState(null);
   const ref = useRef(null);
 
@@ -75,6 +71,7 @@ export default function Results({ progressions = [] }) {
         <ProgressionCard
           progression={progressions}
           onSelectChord={setSelectedChord}
+          order={order}
         />
       </div>
 

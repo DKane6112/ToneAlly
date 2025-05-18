@@ -45,7 +45,8 @@ class ChordGenerator {
         const prog = {
             key: this.key,
             genre: this.genre,
-            chords: [],  
+            chords: [],
+            order: [],  
             progression: this.random         
         };
         
@@ -57,6 +58,7 @@ class ChordGenerator {
         for (let i = 0; i < progression.length; i++) {
             let steps = progression[i].steps;
             let tone = progression[i].tone;
+            let order = progression[i].order;
             
             j = j + steps;
             if (j > 12) {
@@ -67,6 +69,7 @@ class ChordGenerator {
             }
             let chord = backward.get(j);
             prog.chords.push(chord + " " + tone);
+            prog.order.push(order);
         }
 
         return prog;
