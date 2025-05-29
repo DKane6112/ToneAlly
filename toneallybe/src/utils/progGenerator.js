@@ -74,15 +74,32 @@ function progGenerator(){
         },
 
         Blues: {
-            // I7 IV7 I7 V7 IV7 I7
+            // I7 IV7 I7 V7 IV7
             1: [
                 { steps: 0, tone: "7", order: "I7" },   // I7
                 { steps: 5, tone: "7", order: "IV7" },   // IV7
                 { steps: -5, tone: "7", order: "I7" },   // I7
                 { steps: 7, tone: "7", order: "V7" },   // V7
                 { steps: -2, tone: "7", order: "IV7" },   // IV7
-                { steps: -5, tone: "7", order: "I7" }    // I7
             ],
+
+            // i7 iv7 i7 V7           
+            2: [
+                { steps: 0, tone: "Minor7", order: "i7" },   // i7
+                { steps: 5, tone: "Minor7", order: "iv7" },   // iv7
+                { steps: -5, tone: "Minor7", order: "i7" },   // i7
+                { steps: 7, tone: "7", order: "V7" }    // V7
+            ],
+
+            // i7 iv7 i7 ♭VI7 V7
+            3: [
+                { steps: 0, tone: "Minor7", order: "i7" },   // i7
+                { steps: 5, tone: "Minor7", order: "iv7" },   // iv7
+                { steps: -5, tone: "Minor7", order: "i7" },   // i7
+                { steps: 8, tone: "Major", order: "♭VI7" },   // ♭VI7
+                { steps: -1, tone: "7", order: "V7" }    // V7
+            ]
+
         }
     }
     return progressions;
