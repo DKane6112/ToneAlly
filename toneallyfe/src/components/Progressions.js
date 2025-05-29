@@ -63,7 +63,7 @@ export default function Results({ progressions = [], order = [] }) {
       window.scales_chords_api_onload();
       
     }
-  }, [selectedChord]);  // <-- run whenever the chord changes
+  }, [selectedChord]);
 
   if (!progressions.length) return null;
 
@@ -72,7 +72,7 @@ export default function Results({ progressions = [], order = [] }) {
       <div className="results__header">
         <i className="fa-solid fa-lightbulb" />
         <h3>Try this progression</h3>
-        <span className="hint">(Click a chord to see fingering)</span>
+        {/* <span className="hint">(Click a chord to see fingering)</span> */}
       </div>
 
       <div className="results__list">

@@ -14,7 +14,7 @@ export default function Nav() {
       <div className= "navbar__wrapper">
         <Link to="/" className="navbar__brand">
             <img src="./favicon.ico" alt="ChordCraft logo" className="navbar__logo" />
-            ToneAlly
+            Tone-Ally
         </Link>
 
         <ul className={`navbar__links ${open ? "open" : ""}`}>

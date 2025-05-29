@@ -1,6 +1,5 @@
 import * as Tone from "tone";
 
-
 const sampleMap = {
   A2:   "A2.ogg",  "A#2":"As2.ogg", B2:   "B2.ogg",
   C3:   "C3.ogg",  "C#3":"Cs3.ogg", D3:   "D3.ogg",
@@ -13,7 +12,6 @@ const sampleMap = {
   A4:   "A4.ogg",  "A#4":"As4.ogg", B4:   "B4.ogg"
 };
 
-
 const guitar = new Tone.Sampler({
   urls: sampleMap,
   baseUrl: "/samples/guitar-acoustic/",
@@ -24,20 +22,39 @@ const guitar = new Tone.Sampler({
 const dryGain = new Tone.Gain(1).toDestination();
 const wetGain = new Tone.Gain(0.3).toDestination();
 
-const convolver = new Tone.Convolver("/publicsamples/irs/wood-room.wav")
+const convolver = new Tone.Convolver("/samples/irs/wood-room.wav")
   .connect(wetGain);
 
 guitar.connect(dryGain);
 guitar.connect(convolver);
 
 
-function getTriadNotes(chordName) {
+function parseChordIntervals(chordName) {
+  const name = chordName.toLowerCase();
+  if (name.includes("maj7")) {
+    return [0, 4, 7, 11];
+  }
+  if (name.includes("minor7")) {
+    return [0, 3, 7, 10];
+  }
+  if (/7$/.test(name)) {
+    
+    return [0, 4, 7, 10];
+  }
+  if (name.includes("minor")) {
+    return [0, 3, 7];
+  }
+
+  return [0, 4, 7];
+}
+
+function getChordNotes(chordName) {
   const m = chordName.match(/^([A-G](?:#)?)/);
   if (!m) return [];
   const root = m[1];
-  const isMinor = /m(?!aj)/i.test(chordName);
-  const intervals = isMinor ? [0, 3, 7] : [0, 4, 7];
-  const octave = 3;
+  const intervals = parseChordIntervals(chordName);
+  const octave = 3; // sample octave base
+
   return intervals.map(i =>
     Tone.Frequency(`${root}${octave}`)
       .transpose(i)
@@ -48,7 +65,7 @@ function getTriadNotes(chordName) {
 export async function playChord(chordName) {
   await Tone.start();
   const now = Tone.now();
-  const notes = getTriadNotes(chordName);
+  const notes = getChordNotes(chordName);
   if (!notes.length) return;
 
   const strumDelay = 0.06; // seconds between each string

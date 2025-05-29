@@ -11,6 +11,7 @@ function ChordTool() {
     const [progressions, setProgressions] = useState([]);
     const [previous, setPrevious] = useState(0);
     const [ordered, setOrdered] = useState([]);
+    const [showForm, setShowForm] = useState(true);
 
     const log = (e) => {
         e.preventDefault();
@@ -44,6 +45,7 @@ function ChordTool() {
         } else {
             console.error("Error fetching progressions");
         }
+        setShowForm(false);
     }
 
     return (
@@ -53,7 +55,8 @@ function ChordTool() {
             <p class="hero__subheading">Input a genre and key to ignite fresh chord progression ideas for your next masterpiece.</p>
         </header>
 
-        <section class="form-card" aria-labelledby="generator-title">
+        {showForm && (
+            <section class="form-card" aria-labelledby="generator-title">
             <h2 id="generator-title" class="sr-only">Chord Progression Generator</h2>
             <form class="form" autoComplete="off" onSubmit={handleSubmit}>
                 <div class="form__group">
@@ -80,12 +83,20 @@ function ChordTool() {
                 <button type="submit" class="btn-submit">Generate Ideas</button>
             </form>
         </section>
+        )}
 
-        <Results progressions={progressions} order= {ordered} />
-
-        <footer>
-            <p>&copy; 2025 ToneAlly. Crafted with <i class="fa-solid fa-heart">❤</i> for musicians everywhere.</p>
-        </footer>
+        {!showForm && (
+            <div className="progression-info">    
+                <Results progressions={progressions} order= {ordered} />
+                
+                <button
+                    className="btn-outline"
+                    onClick={() => setShowForm(true)
+                    }
+                    > Back
+                </button>
+            </div>       
+        )}
     </div>
     );
 }

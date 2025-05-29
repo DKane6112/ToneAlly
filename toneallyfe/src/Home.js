@@ -1,6 +1,7 @@
 // Home.jsx
 import { Link } from "react-router-dom";
-import { use, useEffect } from "react";
+import { useEffect } from "react";
+
 
 export default function Home() {
 
@@ -25,12 +26,12 @@ export default function Home() {
       {/* hero ------------------------------------------------ */}
       <header className="hero">
         <h1 className="hero__heading">
-          ToneAlly <span role="img" aria-label="spark">✨</span>
+          Tone-Ally <span role="img" aria-label="spark">✨</span>
         </h1>
-        <p className="tagline">It’s&nbsp;<strong>ToneAlly</strong>&nbsp;awesome!</p>
+        <p className="tagline">It’s&nbsp;<strong>Tone-Ally</strong>&nbsp;awesome!</p>
         <p className="hero__subheading">
-          Your pocket-sized harmony assistant: generate fresh chord
-          progressions, find scales that fit, and explore fingerings—all in one place.
+          Your pocket-sized music assistant:<br></br> Generate fresh chord
+          progressions, find scales that fit, and learn fingerings—all in one place.
         </p>
 
         <div className="cta-row">
@@ -44,7 +45,7 @@ export default function Home() {
         <article className="info-card">
           <i className="fa-regular fa-lightbulb icon-lg" />
           <h3>Instant Inspiration</h3>
-          <p>Pick a genre &amp; key and ToneAlly spits out tried-and-true progressions (or something totally random—your choice).</p>
+          <p>Pick a genre &amp; key and ToneAlly spits out tried-and-true progressions.</p>
         </article>
 
         <article className="info-card">
@@ -56,14 +57,9 @@ export default function Home() {
         <article className="info-card">
           <i className="fa-solid fa-guitar icon-lg" />
           <h3>Play &amp; Learn</h3>
-          <p>Click any chord to view a diagram (and soon, <em>hear</em> it). Craft ideas faster than you can brew coffee.</p>
+          <p>Click any chord to view a diagram and hear it.</p>
         </article>
       </section>
-
-      {/* footer --------------------------------------------- */}
-      <footer>
-        <p>&copy; 2025 ToneAlly. Crafted with <i className="fa-solid fa-heart" /> for musicians everywhere.</p>
-      </footer>
     </div>
   );
 }

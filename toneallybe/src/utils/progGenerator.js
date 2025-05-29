@@ -53,9 +53,9 @@ function progGenerator(){
         Jazz: {
             // ii  V  I
             1: [
-                { steps: 2, tone: "Minor", order: "ii" },   // ii
-                { steps: 5, tone: "Major", order: "V" },   // V
-                { steps: 5, tone: "Major", order: "I"}    // I
+                { steps: 2, tone: "Minor7", order: "ii" },   // ii
+                { steps: 5, tone: "7", order: "V" },   // V
+                { steps: 5, tone: "Maj7", order: "I"}    // I
             ],
             // I  vi  ii  V
             2: [

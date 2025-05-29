@@ -4,6 +4,8 @@ import Nav from './components/Nav';
 import ChordTool from './ChordTool.js';
 import ScaleTool from './ScaleTool.js';
 import Home from './Home.js';
+import Footer from "./components/Footer.js";
+
  
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
         <Route path="/progressions" element={<ChordTool />} />
         <Route path="/scales" element={<ScaleTool />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
