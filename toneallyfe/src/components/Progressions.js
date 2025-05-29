@@ -20,6 +20,13 @@ function ProgressionCard({ progression, onSelectChord, order }) {
     }
   }
 
+  function displayChord(chord) {
+    if (chord.includes("Minor")){
+      return chord.replace("Minor", "minor");
+    }
+    return chord;
+  }
+
   return (
     <div className="progression-card">
       <div className="progression-chords">
@@ -33,7 +40,7 @@ function ProgressionCard({ progression, onSelectChord, order }) {
               onMouseUp={() => playChord(p)}
               title={`Show fingering for ${p}`}
             >
-              {p}
+              {displayChord(p)}
             </button>
             <span className="progression__order">{order[orderNumber]}</span>
             {incOrderNumber()}
