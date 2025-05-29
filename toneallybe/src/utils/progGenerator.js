@@ -96,7 +96,7 @@ function progGenerator(){
                 { steps: 0, tone: "Minor7", order: "i7" },   // i7
                 { steps: 5, tone: "Minor7", order: "iv7" },   // iv7
                 { steps: -5, tone: "Minor7", order: "i7" },   // i7
-                { steps: 8, tone: "Major", order: "♭VI7" },   // ♭VI7
+                { steps: 8, tone: "7", order: "♭VI7" },   // ♭VI7
                 { steps: -1, tone: "7", order: "V7" }    // V7
             ]
 
