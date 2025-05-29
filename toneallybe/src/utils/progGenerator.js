@@ -132,22 +132,22 @@ function progGenerator(){
                 { steps: 0, tone: "Major", order: "I" },   // I
                 { steps: 5, tone: "Major", order: "IV" },   // IV
                 { steps: 2, tone: "Major", order: "V" },   // V
-                { steps: -5, tone: "Major", order: "I" }    // I
+                { steps: -7, tone: "Major", order: "I" }    // I
             ],
 
             // I  vi  IV  V
             2: [
                 { steps: 0, tone: "Major", order: "I" },   // I
                 { steps: 9, tone: "Minor", order: "vi" },   // vi
-                { steps: 8, tone: "Major", order: "IV" },   // IV
-                { steps: 7, tone: "Major", order: "V" }    // V
+                { steps: -4, tone: "Major", order: "IV" },   // IV
+                { steps: 2, tone: "Major", order: "V" }    // V
             ],
 
             // i ♭VI IV V
             3: [
                 { steps: 0, tone: "Minor", order: "i" },   // i
                 { steps: 8, tone: "Major", order: "♭VI" },   // ♭VI
-                { steps: 5, tone: "Major", order: "IV" },   // IV
+                { steps: -3, tone: "Major", order: "IV" },   // IV
                 { steps: 2, tone: "Major", order: "V" }    // V
             ]
         },
@@ -165,15 +165,15 @@ function progGenerator(){
                 { steps: 0, tone: "Major", order: "I" },   // I
                 { steps: 7, tone: "Major", order: "V" },   // V
                 { steps: 2, tone: "Minor", order: "vi" },   // vi
-                { steps: 8, tone: "Major", order: "IV" }    // IV
+                { steps: -4, tone: "Major", order: "IV" }    // IV
             ],
 
             // I  vi  IV  V
             3: [
                 { steps: 0, tone: "Major", order: "I" },   // I
                 { steps: 9, tone: "Minor", order: "vi" },   // vi
-                { steps: 8, tone: "Major", order: "IV" },   // IV
-                { steps: 7, tone: "Major", order: "V" }    // V
+                { steps: -4, tone: "Major", order: "IV" },   // IV
+                { steps: 2, tone: "Major", order: "V" }    // V
             ]
         },
 
@@ -182,7 +182,7 @@ function progGenerator(){
             1: [
                 { steps: 0, tone: "Major", order: "I" },   // I
                 { steps: 10, tone: "Major", order: "♭VII" },   // ♭VII
-                { steps: 7, tone: "Major", order: "IV" },   // IV
+                { steps: -5, tone: "Major", order: "IV" },   // IV
                 { steps: 2, tone: "Major", order: "V" }    // V
             ],
 
@@ -190,7 +190,7 @@ function progGenerator(){
             2: [
                 { steps: 0, tone: "Minor", order: "i" },   // i
                 { steps: 8, tone: "Major", order: "♭VI" },   // ♭VI
-                { steps: 5, tone: "Minor", order: "iv" },   // iv
+                { steps: -3, tone: "Minor", order: "iv" },   // iv
                 { steps: 2, tone: "Major", order: "V" }    // V
             ],
 
@@ -198,7 +198,7 @@ function progGenerator(){
             3: [
                 { steps: 0, tone: "Minor", order:"i" },   // i
                 { steps: 5, tone:"Minor", order:"iv" },   // iv
-                { steps: -3, tone:"Major", order:"♭VI" },   // ♭VI
+                { steps: 3, tone:"Major", order:"♭VI" },   // ♭VI
                 { steps:-1, tone:"Major", order:"V"}    // V
             ]
         },
@@ -215,15 +215,15 @@ function progGenerator(){
             2: [
                 { steps: 0, tone: "Major", order: "I" },   // I
                 { steps: 9, tone: "Minor", order: "vi" },   // vi
-                { steps: 8, tone: "Major", order: "IV" },   // IV
-                { steps: 7, tone: "Major", order: "V" }    // V
+                { steps: -4, tone: "Major", order: "IV" },   // IV
+                { steps: 2, tone: "Major", order: "V" }    // V
             ],
 
             // I  ii  V
             3: [
                 { steps: 0, tone:"Major", order:"I" },   // I
-                { steps:-5, tone:"Minor", order:"ii" },   // ii
-                { steps:-2, tone:"Major", order:"V"}    // V
+                { steps: 2, tone:"Minor", order:"ii" },   // ii
+                { steps: 5, tone:"Major", order:"V"}    // V
             ]
         },
 
@@ -232,24 +232,24 @@ function progGenerator(){
             1: [
                 { steps: 0, tone: "Major", order: "I" },   // I
                 { steps: 4, tone: "Minor", order: "iii" },   // iii
-                { steps: 5, tone: "Major", order: "IV" },   // IV
-                { steps: 3, tone: "Minor", order: "iv" }    // iv
+                { steps: 1, tone: "Major", order: "IV" },   // IV
+                { steps: 0, tone: "Minor", order: "iv" }    // iv
             ],
 
             // I vi ii V
             2: [
                 { steps: 0, tone: "Major", order: "I" },   // I
                 { steps: 9, tone: "Minor", order: "vi" },   // vi
-                { steps: 5, tone: "Minor", order: "ii" },   // ii
-                { steps: 7, tone: "Major", order: "V" }    // V
+                { steps: -7, tone: "Minor", order: "ii" },   // ii
+                { steps: 5, tone: "Major", order: "V" }    // V
             ],
 
             // IV V iii vi
             3: [
                 { steps: 5, tone: "Major", order: "IV" },   // IV
                 { steps: 2, tone: "Major", order: "V" },   // V
-                { steps: 4, tone: "Minor", order: "iii" },   // iii
-                { steps: 9, tone: "Minor", order: "vi" }    // vi
+                { steps: -3, tone: "Minor", order: "iii" },   // iii
+                { steps: 5, tone: "Minor", order: "vi" }    // vi
             ]
 
         },
@@ -259,7 +259,7 @@ function progGenerator(){
             1: [
                 { steps: 0, tone: "Major", order: "I" },   // I
                 { steps: 10, tone: "Major", order: "♭VII" },   // ♭VII
-                { steps: 7, tone: "Major", order: "IV" },   // IV
+                { steps: -5, tone: "Major", order: "IV" },   // IV
                 { steps: 2, tone: "Major", order: "V" }    // V
             ],
 
@@ -273,8 +273,8 @@ function progGenerator(){
             // vi IV I V
             3: [
                 { steps: 9, tone: "Minor", order: "vi" },   // vi
-                { steps: 8, tone: "Major", order: "IV" },   // IV
-                { steps: 7, tone: "Major", order: "I" },   // I
+                { steps: -4, tone: "Major", order: "IV" },   // IV
+                { steps: -5, tone: "Major", order: "I" },   // I
                 { steps: 7, tone: "Major", order: "V" }    // V
             ]
         }
