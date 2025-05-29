@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 
 const GENRES = [
-  "Rock", "Rhythm and Blues", "R&B", "Rap", "Reggae",
-  "Pop", "Punk", "Funk", "Folk", "Jazz",
-  "Classical", "Country", "EDM", "House", "Techno",
-  "Metal", "Soul", "Blues", "Lo-fi", "Ambient"
+  "Rock", /*"Rhythm and Blues", "R&B", "Rap",*/ "Reggae",
+  "Pop", "Punk", "Funk", /*"Folk",*/ "Jazz",
+  "Classical", "Country"/*, "EDM", "House", "Techno"*/,
+  "Metal", "Soul", "Blues" /*,"Lo-fi", "Ambient"*/
 ];
 
 export default function GenreCombo({ value, onChange }) {

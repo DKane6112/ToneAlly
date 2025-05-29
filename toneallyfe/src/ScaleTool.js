@@ -39,7 +39,7 @@ function ScaleTool() {
     <div>
         <header class="hero">
             <h1 class="hero__heading">Find Scales for Your Progression</h1>
-            <p class="hero__subheading">Enter a few chords and we’ll show every scale that fits.</p>
+            <p class="hero__subheading">Enter a few chords and we’ll show you scales that fit.</p>
         </header>
 
         <section class="form-card" aria-labelledby="generator-title">

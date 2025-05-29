@@ -52,7 +52,7 @@ function ChordTool() {
     <div>
         <header class="hero">
             <h1 class="hero__heading">Unleash Harmonies in Seconds</h1>
-            <p class="hero__subheading">Input a genre and key to ignite fresh chord progression ideas for your next masterpiece.</p>
+            <p class="hero__subheading">Input a genre and key to see tried and true chord progressions for you to build on.</p>
         </header>
 
         {showForm && (
