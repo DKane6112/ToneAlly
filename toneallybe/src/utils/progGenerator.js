@@ -71,6 +71,18 @@ function progGenerator(){
                 { steps: 5, tone: "Minor", order: "ii" },   // ii
                 { steps: 5, tone: "Major", order: "V" }    // V
             ]
+        },
+
+        Blues: {
+            // I7 IV7 I7 V7 IV7 I7
+            1: [
+                { steps: 0, tone: "7", order: "I7" },   // I7
+                { steps: 5, tone: "7", order: "IV7" },   // IV7
+                { steps: -5, tone: "7", order: "I7" },   // I7
+                { steps: 7, tone: "7", order: "V7" },   // V7
+                { steps: -2, tone: "7", order: "IV7" },   // IV7
+                { steps: -5, tone: "7", order: "I7" }    // I7
+            ],
         }
     }
     return progressions;
