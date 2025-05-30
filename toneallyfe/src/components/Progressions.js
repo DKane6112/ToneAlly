@@ -64,10 +64,19 @@ function ProgressionCard({ progression, onSelectChord, order }) {
 export default function Results({ progressions = [], order = [] }) {
   const [selectedChord, setSelectedChord] = useState(null);
   const ref = useRef(null);
-
+  const [src, setSrc] = useState("");
   useEffect(() => {
-    if (selectedChord && window.scales_chords_api_onload) {
-      window.scales_chords_api_onload();
+    if (selectedChord) {
+      
+      let chordName = selectedChord.toLowerCase()
+      .replace(/#/g, "sharp")
+      .replace(/♯/g, "sharp")
+      .replace(/b/g, "flat")
+      .replace(/♭/g, "flat")
+      .replace(/[^a-z0-9]/g, "")
+      + ".jpg";
+
+      setSrc("/chords/" + chordName);
       
     }
   }, [selectedChord]);
@@ -92,14 +101,13 @@ export default function Results({ progressions = [], order = [] }) {
 
       {selectedChord && (
         <div className="chord-diagram">
-          <h4>{selectedChord} fingering</h4>
+          <h4>{selectedChord} </h4>
           
           <div className="chord-diagram__placeholder">
-            <ins
-              ref={ref}
+            <img
+              src={src}
               className="scales_chords_api"
-              chord={selectedChord}
-              output="image"
+              alt={selectedChord}
             />
           </div>
 

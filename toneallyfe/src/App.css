@@ -534,6 +534,7 @@ footer {
   border: 1px dashed var(--clr-border);
   border-radius: var(--radius-md);
   font-style: italic;
+  margin: 1rem;
 }
 
 /* Close button */
