@@ -71,8 +71,6 @@ export default function Results({ progressions = [], order = [] }) {
       let chordName = selectedChord.toLowerCase()
       .replace(/#/g, "sharp")
       .replace(/♯/g, "sharp")
-      .replace(/b/g, "flat")
-      .replace(/♭/g, "flat")
       .replace(/[^a-z0-9]/g, "")
       + ".jpg";
 
