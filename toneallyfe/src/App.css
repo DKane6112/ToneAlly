@@ -565,3 +565,10 @@ footer {
   max-width: 80vw;
   height: auto;
 }
+
+.tuner-gauge{
+  width: "50vw";
+  height: "auto";
+  display:"block";
+  margin:"0 auto"
+}

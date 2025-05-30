@@ -18,9 +18,9 @@ export default function Tuner() {
   /* ─────────── constants ─────────── */
   const MIN_HZ = 60;     // covers drop-D
   const MAX_HZ = 350;    // covers high-E
-  const IN_TUNE_CENTS = 5;
+  const IN_TUNE_CENTS = 12;
   const GAUGE_SPAN = 50; // ±50 ¢ full scale
-  const SILENT_RESET_MS = 1000;
+  const SILENT_RESET_MS = 2000;
 
   /* ─────────── lifecycle ─────────── */
   useEffect(() => {
@@ -60,11 +60,11 @@ export default function Tuner() {
   /* ─────────── render ─────────── */
 return (
   <div style={{
-        minHeight:"100vh", display:"flex", flexDirection:"column",
+        display:"flex", flexDirection:"column",
         alignItems:"center", justifyContent:"center"}}
   >
     
-    <svg style={{width: "65vw", height: "auto", display:"block", margin:"0 auto"}} viewBox="0 0 300 160">
+    <svg style={{width: "100vw", height: "35vh", display:"block", margin:"0 auto" }} viewBox="0 0 300 160">
       
       <path d={describeArc(150,130,100,-90,90)}
             stroke="#e0e0e0" strokeWidth="8" fill="none" />
