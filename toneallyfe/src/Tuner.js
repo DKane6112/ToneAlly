@@ -2,12 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import { PitchDetector } from "pitchy";
 
 export default function Tuner() {
-  /* ─────────── state ─────────── */
+  
   const [note,  setNote]  = useState("");
   const [freq,  setFreq]  = useState(0);
   const [cents, setCents] = useState(0);
 
-  /* ─────────── refs ─────────── */
+  
   const analyserRef = useRef(null);
   const detectorRef = useRef(null);
   const frameIdRef  = useRef(null);
@@ -15,14 +15,15 @@ export default function Tuner() {
   const audioCtxRef = useRef(null);
   const lastHeard   = useRef(0);
 
-  /* ─────────── constants ─────────── */
+  
   const MIN_HZ = 60;     // covers drop-D
   const MAX_HZ = 350;    // covers high-E
   const IN_TUNE_CENTS = 12;
   const GAUGE_SPAN = 50; // ±50 ¢ full scale
   const SILENT_RESET_MS = 2000;
+  const STRING_FREQS = [82.41, 110.00, 146.83, 196.00, 246.94, 329.63];
 
-  /* ─────────── lifecycle ─────────── */
+  
   useEffect(() => {
     const AudioCtx = window.AudioContext || window.webkitAudioContext;
     if (!AudioCtx) return;
@@ -43,7 +44,7 @@ export default function Tuner() {
 
         const source = ctx.createMediaStreamSource(stream);
 
-        // mild band-pass: keeps fundamentals & 2-3 harmonics
+        // mild band-pass keeps fundamentals & 2-3 harmonics
         const band = ctx.createBiquadFilter();
         band.type = "bandpass";
         band.frequency.value = 180;
@@ -57,8 +58,7 @@ export default function Tuner() {
     return () => cleanup();
   }, []);
 
-  /* ─────────── render ─────────── */
-return (
+  return (
   <div style={{
         display:"flex", flexDirection:"column",
         alignItems:"center", justifyContent:"center"}}
@@ -95,47 +95,68 @@ return (
 );
 
 
+function startLoop(ctx) {
+  const analyser = analyserRef.current;
+  const detector = detectorRef.current;
+  const buf      = new Float32Array(analyser.fftSize);
 
-  /* ─────────── helpers ─────────── */
-  function startLoop(ctx) {
-    const analyser = analyserRef.current;
-    const detector = detectorRef.current;
-    const buf      = new Float32Array(analyser.fftSize);
+  const tick = () => {
+    analyser.getFloatTimeDomainData(buf);
+    const [rawPitch, clarity] = detector.findPitch(buf, ctx.sampleRate);
 
-    const tick = () => {
-      analyser.getFloatTimeDomainData(buf);
-      let [pitch, clarity] = detector.findPitch(buf, ctx.sampleRate);
+    const now = performance.now();
 
-      const now = performance.now();
+    if (clarity > 0.9 && rawPitch) {
+      
+      const pitch = refineFundamental(rawPitch);
 
-      if (clarity > 0.9 && pitch) {
-        /* --- fundamental prioritiser: halve until inside range --- */
-        while (pitch > MAX_HZ && pitch / 2 >= MIN_HZ) pitch /= 2;
-
-        if (pitch >= MIN_HZ && pitch <= MAX_HZ) {
-          const { name, cents: dev } = hzToNote(pitch);
-          setNote(name);
-          setFreq(pitch);
-          setCents(dev);
-          lastHeard.current = now;
-        }
+      if (pitch >= MIN_HZ && pitch <= MAX_HZ) {
+        const { name, cents: dev } = hzToNote(pitch);
+        setNote(name);
+        setFreq(pitch);
+        setCents(dev);
+        lastHeard.current = now;
       }
+    }
 
-      /* idle reset */
-      if (now - lastHeard.current > SILENT_RESET_MS) {
-        setNote("");
-        setFreq(0);
-        setCents(0);
-      }
+    //idle reset
+    if (now - lastHeard.current > SILENT_RESET_MS) {
+      setNote("");
+      setFreq(0);
+      setCents(0);
+    }
 
-      frameIdRef.current = requestAnimationFrame(tick);
-    };
+    frameIdRef.current = requestAnimationFrame(tick);
+  };
 
-    lastHeard.current = performance.now();
-    tick();
+  lastHeard.current = performance.now();
+  tick();
+}
+
+// stops frequencies from jumping octaves
+function refineFundamental(f) {
+  // keep halving while the halved value is closer to *any* real string
+  while (f / 2 >= MIN_HZ) {
+    const closerAfterHalving =
+      distanceToNearest(f / 2) < distanceToNearest(f);
+
+    if (closerAfterHalving) {
+      f = f / 2;           // good move keep the lower octave
+    } else {
+      break;               // got worse stay put
+    }
   }
+  return f;
+}
 
-  function hzToNote(f) {
+function distanceToNearest(hz) {
+  return Math.min(
+    ...STRING_FREQS.map(s => Math.abs(s - hz))
+  );
+}
+
+
+function hzToNote(f) {
     const A4 = 440, A4_MIDI = 69;
     const noteNum = Math.round(A4_MIDI + 12 * Math.log2(f / A4));
 
@@ -159,7 +180,7 @@ return (
     }
   }
 
-  // build an SVG arc path from polar angles (deg)
+    // build an SVG arc path from polar angles
     function describeArc(cx, cy, r, startAngle, endAngle) {
         const toRad = deg => (deg - 90) * Math.PI / 180;   // SVG 0° is 12 o’clock
         const p = deg => ({
