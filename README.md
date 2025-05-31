@@ -1,4 +1,4 @@
-# ToneAlly 🎸 — Your Pocket-Sized Harmony Assistant  
+# ToneAlly 🎸 — Your Pocket-Sized Assistant  
 *It’s **ToneAlly** awesome!*
 
 ---
@@ -7,8 +7,8 @@
 1. [What is ToneAlly?](#what-is-toneally)
 2. [Features](#features)
 3. [Tech Stack](#tech-stack)
-4. [Local Quick Start](#local-quick-start)
-5. [Docker Workflows](#docker-workflows)
+4. [Live Demo](#live-demo)
+5. [Local Quick Start](#local-quick-start)
 6. [Project Structure](#project-structure)
 7. [API Reference](#api-reference)
 8. [Customisation & Roadmap](#customisation--roadmap)
@@ -16,11 +16,11 @@
 ---
 
 ## What is ToneAlly?
-ToneAlly helps musicians jump-start ideas, learn theory, and jam faster:
+ToneAlly is a suite of tools that helps musicians jump-start ideas, learn theory, and jam faster:
 
-* **Chord Progression Generator** – Choose a genre & key, get tried-and-true progressions.
-* **Scale Finder** – Type/paste your own chords and instantly see every scale that fits.
-* Click any chord → view a diagram (SVG) and (soon) hear it played.
+* **Chord Progression Generator** – 11 genre templates (pop, jazz, rock, metal… more coming) in any key.
+* **Scale Finder** – Type/paste your own chords and instantly see compatable scales.
+* **One‑click Playback** – Hear the whole progression or individual chords, complete with on‑screen chord diagrams.
 
 Everything runs in the browser (React) with a lightweight Node + Express API that handles music-theory logic.
 
@@ -29,7 +29,7 @@ Everything runs in the browser (React) with a lightweight Node + Express API tha
 ## Features
 | Category | Highlights |
 |----------|------------|
-| **Generator** | Pop/Rock/Jazz templates (more genres coming soon) |
+| **Generator** | Pop/Rock/Jazz templates (more genres coming soon), playable chord progressions |
 | **Scale Finder** | Bad-note filter (tritone avoidance) with major & minor patterns. |
 | **UI/UX** | • Responsive pill pickers & chip inputs<br>• Dark-mode toggle<br>• Slide-out mobile nav with backdrop. |
 | **Accessibility** | ARIA-friendly key & chord selectors, keyboard nav, screen-reader announcements. |
@@ -38,50 +38,32 @@ Everything runs in the browser (React) with a lightweight Node + Express API tha
 ---
 
 ## Tech Stack
-| Layer | Libraries |
+| Layer | Libraries & Services |
 |-------|-----------|
-| **Front End** | React 18, React Router 6, Font Awesome, optional Radix UI / shadcn. |
-| **Back End** | Node 18, Express 4, nanoid (IDs), Nodemon (dev). |
-| **Tooling**  | Create-React-App, dotenv, ESLint + Prettier, Jest (unit tests). |
+| **Front End** | React 19, React Router 7, Axios, Pitchy(tuner), Tone.js(playback). |
+| **Back End** | Node 20, Express 4, nanoid (IDs), Nodemon (dev). |
+| **Tooling**  | Create-React-App, dotenv, ESLint + Prettier, Jest (unit tests), Docker + Compose. |
+| **Hosting**  | Vercel (front-end), Render (API) CO/CD via GitHub Actions.|
+
+---
+
+## Live Demo
+
+**Front-end:** https://tone-ally.vercel.app/ <br>
+**Back-end:** https://toneally.onrender.com <br>
+The production build is hosted on Vercel behind its global edge CDN.  The Node API runs on Render’s free tier and is throttled to 250 ms cold‑start; expect a brief spin‑up delay on first hit.
 
 ---
 
 ## Local Quick Start
 
 ```bash
-# 1. Clone & install all dependencies
-git clone https://github.com/your-org/toneally.git
+# clone & spin up dev stack
+git clone https://github.com/your‑org/toneally.git
 cd toneally
-npm install            # root: installs both workspaces
-
-# 2. Start API (port 4000)
-npm run dev:toneallybe     # runs nodemon src/index.js
-
-# 3. Start React app (port 3000)
-npm run dev:toneallyfe    # runs front-end (use second terminal)
-
-# 4. Open http://localhost:3000
-```
-
----
-
-## Docker Workflows
-🛠 Development (with hot-reload)
-```bash
-# Build & launch both services with live-reload
 docker compose -f docker-compose.dev.yml up --build
+# -> React on :3000, API on :4000
 ```
-Client runs yarn start inside Node, with your source mounted and polling enabled.
-Server runs npm run dev (nodemon) inside Node, with automatic reload on changes.
-
-
-🚀 Production Preview
-```bash
-# Build & launch multi-stage (CRA → build → nginx) and production server
-docker compose up --build
-```
-Client serves the static /build output via Nginx on port 3000.
-Server runs node src/index.js on port 4000.
 
 ---
 
@@ -129,8 +111,8 @@ All responses are JSON. The front end handles formatting & rendering.
 
 | ✔️ Done                                          | 🚧 Planned                                       |
 | ------------------------------------------------ | ------------------------------------------------ |
-| Responsive UI, keyboard navigation, dark mode.   | Audio playback of chords (Web Audio API).        |
-| Mixolydian & custom bad-note exceptions.         | MIDI & MusicXML export.                          |
-|                                                  | User favourites (localStorage) + shareable URLs. |
-|                                                  | PWA install prompt + offline cache.              |
-|                                                  | Add new genres                                   | 
+| Responsive UI, keyboard navigation, dark mode.   | Metronome         |
+| Mixolydian & custom bad-note exceptions.         | Ear trainer mini game                          |
+| Audio playback of chords                         | Auto-tab |
+| Dark mode                                        | Add new genres             |
+
