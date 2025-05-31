@@ -1,0 +1,58 @@
+/* --- BASICS ------------------------------------------------------------- */
+.toggle {
+  /* you can place the toggle anywhere */
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* hide the raw checkbox but keep it focusable */
+.toggle > input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* --- TRACK -------------------------------------------------------------- */
+.toggle .track {
+  width: 3.25rem;           /* overall size of pill */
+  height: 1.75rem;
+  background: var(--clr-primary); /* pastel coral for “light” */
+  border-radius: 1.75rem;
+  display: flex;
+  align-items: center;
+  padding: 0.125rem;        /* space so thumb never touches edge */
+  transition: background 0.25s;
+  box-shadow:
+    inset 0   2px 4px  rgba(0, 0, 0, 0.15),
+    inset 0  -2px 4px  rgba(255,255,255,0.60);
+}
+
+/* --- THUMB -------------------------------------------------------------- */
+.toggle .thumb {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 0.875rem;
+  transition: transform 0.25s;
+  user-select: none;
+  background-color: var(--clr-bg);
+  box-shadow:
+    0   2px 4px  rgba(0, 0, 0, 0.35),
+    0   0   0    1px  rgba(0, 0, 0, 0.05),
+    inset 0 1px 0     rgba(255,255,255,0.80);
+}
+
+/* --- WHEN DARK IS ACTIVE ----------------------------------------------- */
+.toggle > input:checked + .track {
+  background: #84576e;      /* plum for dark track (match your palette) */
+  box-shadow:
+    inset 0   2px 4px  rgba(0, 0, 0, 0.40),
+    inset 0  -2px 4px  rgba(255,255,255,0.10);
+}
+
+.toggle > input:checked + .track .thumb {
+  transform: translateX(1.5rem);   /* slide to the right */
+}

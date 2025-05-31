@@ -1,9 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";     // keep if you use React-Router
+import ThemeToggle from "./ThemeToggle";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
+  const [smallScreen, setSmallScreen] = useState(
+    window.innerWidth <= 768
+  );
+
+  // Update smallScreen on window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setSmallScreen(window.innerWidth <= 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <>
@@ -11,6 +24,9 @@ export default function Nav() {
     {open && <div className="backdrop" onClick={close} />}
 
     <nav className="navbar">
+      {smallScreen && (
+        <ThemeToggle />
+      )}
       <div className= "navbar__wrapper">
         <Link to="/" className="navbar__brand">
             <img src="./favicon.ico" alt="ChordCraft logo" className="navbar__logo" />
@@ -25,7 +41,11 @@ export default function Nav() {
             <li><Link to="/about"     className="navbar__link">About</Link></li>
             <li><Link to="/contact"   className="navbar__link">Contact</Link></li>
         </ul>
+        { !smallScreen && (
+          <ThemeToggle />
+        )}
       </div>
+      
 
       {/*  --- hamburger (mobile only) --- */}
       <button
