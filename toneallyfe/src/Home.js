@@ -1,6 +1,7 @@
 // Home.jsx
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import api from "./api";
 
 
 export default function Home() {
@@ -8,15 +9,9 @@ export default function Home() {
   useEffect(() => {
     // api call to wake up the server
     const wakeUpServer = async () => {
+      const {response} = await api.post("/prog", {key: "C", genre: "Pop", previous: 0 });
+    }
 
-      const response = await fetch("https://toneally.onrender.com/prog", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ key: "C", genre: "Pop", previous: 0 }),
-      });
-    };
     wakeUpServer();
   }
   , []);

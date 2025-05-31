@@ -3,6 +3,7 @@ import './App.css';
 import { useState } from "react";
 import Results from "./components/Progressions.js";
 import GenreCombo from "./components/GenreCombo.js";
+import api from "./api.js";
 
 function ChordTool() {
     const [genre, setGenre] = useState("");
@@ -22,29 +23,21 @@ function ChordTool() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         log(e);
-        const response = await fetch("https://toneally.onrender.com/prog", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ key, genre, previous }),
-        });
+        const {data} = await api.post("/prog", { key, genre, previous });
 
-        if (response.ok) {
-            const data = await response.json();
-            let progression = [];
-            let order = [];
-            for (let i = 0; i < data.chords.length; i++) {
-                progression.push(data.chords[i]);
-                order.push(data.order[i]);
-            }
-            setProgressions(progression);
-            setOrdered(order);
-            setPrevious(data.progression);
-            console.log(data);
-        } else {
-            console.error("Error fetching progressions");
+        
+        let progression = [];
+        let order = [];
+        for (let i = 0; i < data.chords.length; i++) {
+            progression.push(data.chords[i]);
+            order.push(data.order[i]);
         }
+            
+        setProgressions(progression);
+        setOrdered(order);
+        setPrevious(data.progression);
+        console.log(data);
+        
         setShowForm(false);
     }
 

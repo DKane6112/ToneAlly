@@ -2,6 +2,7 @@ import React from "react";
 import './App.css';
 import { useState } from "react";
 import ChordChooser from "./components/ChordChooser.js";
+import api from "./api.js";
 
 
 
@@ -14,25 +15,14 @@ function ScaleTool() {
         e.preventDefault();
         console.log("Chosen chords:", chords);
 
-        const response = await fetch("https://toneally.onrender.com/scale", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ chords }),
-        });
+        const {data} = await api.post("/scale", {chords });
         
-        if (response.ok) {
-            let data = await response.json();
-            let scaleArray = [];
-            for (let i = 0; i < data.length; i++) {
-                scaleArray.push(data[i].key + ": " + data[i].scale.join(" "));
-            }
-            console.log("Response data:", data);
-            setScales(scaleArray);
-        } else {
-            console.error("Error fetching scales");
+        let scaleArray = [];
+        for (let i = 0; i < data.length; i++) {
+            scaleArray.push(data[i].key + ": " + data[i].scale.join(" "));
         }
+        console.log("Response data:", data);
+        setScales(scaleArray);        
     };
 
     return (
