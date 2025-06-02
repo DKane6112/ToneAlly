@@ -6,15 +6,15 @@ import api from "./api";
 
 export default function Home() {
 
-  useEffect(() => {
-    // api call to wake up the server
-    const wakeUpServer = async () => {
-      const {response} = await api.post("/prog", {key: "C", genre: "Pop", previous: 0 });
-    }
+  // useEffect(() => {
+  //   // api call to wake up the server
+  //   const wakeUpServer = async () => {
+  //     const {response} = await api.post("/prog", {key: "C", genre: "Pop", previous: 0 });
+  //   }
 
-    wakeUpServer();
-  }
-  , []);
+  //   wakeUpServer();
+  // }
+  // , []);
 
   return (
     <div>
