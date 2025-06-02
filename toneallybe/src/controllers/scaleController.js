@@ -10,3 +10,15 @@ exports.getScale = async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 }
+
+exports.getInterval = async (req, res) => {
+  console.log(req.body);
+    try {
+      const difficulty  = req.body.difficulty;
+      let intervals = await scaleModel.generateIntervals(difficulty);
+      res.status(200).json(intervals);
+    } catch (error) {
+      console.error('Error fetching intervals:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+}

@@ -32,6 +32,13 @@
   padding: 0;
 }
 
+*:focus { outline: none; }              /* kill default */
+*:focus-visible {                       /* show cue for keyboard */
+  outline: 3px solid #ff9800;           /* or any colour you like */
+  outline-offset: 2px;
+}
+
+
 html {
   height: 100%;
 }

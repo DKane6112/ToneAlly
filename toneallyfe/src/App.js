@@ -6,6 +6,7 @@ import ScaleTool from './ScaleTool.js';
 import Home from './Home.js';
 import Footer from "./components/Footer.js";
 import Tuner from './Tuner.js';
+import EarTrainer from './EarTrainer.js';
 import {Theme} from './hooks/theme.js';
 
  
@@ -20,6 +21,7 @@ function App() {
           <Route path="/progressions" element={<ChordTool />} />
           <Route path="/scales" element={<ScaleTool />} />
           <Route path="/tuner" element={<Tuner />} />
+          <Route path="/ear-trainer" element={<EarTrainer />} />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -38,7 +38,7 @@ export default function Nav() {
             <li><Link to="/progressions" className="navbar__link">Progressions</Link></li>
             <li><Link to="/scales" className="navbar__link">Scales</Link></li>
             <li><Link to="/tuner"     className="navbar__link">Tuner</Link></li>
-            <li><Link to="/about"     className="navbar__link">About</Link></li>
+            <li><Link to="/ear-trainer"     className="navbar__link">Ear Trainer</Link></li>
             <li><Link to="/contact"   className="navbar__link">Contact</Link></li>
         </ul>
         { !smallScreen && (
@@ -66,7 +66,7 @@ export default function Nav() {
           <li><Link to="/progressions" onClick={close}>Progressions</Link></li>
           <li><Link to="/scales" className="navbar__link">Scales</Link></li>
           <li><Link to="/tuner"        onClick={close}>Tuner</Link></li>
-          <li><Link to="/about"        onClick={close}>About</Link></li>
+          <li><Link to="/ear-trainer"        onClick={close}>Ear Trainer</Link></li>
           <li><Link to="/contact"      onClick={close}>Contact</Link></li>
         </ul>
     </aside>

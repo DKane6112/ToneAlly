@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import {playChord} from "../utils/playChord.js";
+import {playChord} from "../utils/playAudio.js";
 
 function ProgressionCard({ progression, onSelectChord, order }) {
+  const [playing, setPlaying] = useState(false);
   let orderNumber = 0;
 
   function incOrderNumber() {
@@ -14,10 +15,12 @@ function ProgressionCard({ progression, onSelectChord, order }) {
   };
 
   const playProgression = async () => {
+    setPlaying(true);
     for (const chord of progression) {
       await playChord(chord);
       await new Promise((resolve) => setTimeout(resolve, 1000)); // wait 1 second between chords
     }
+    setPlaying(false);
   }
 
   function displayChord(chord) {
@@ -53,6 +56,7 @@ function ProgressionCard({ progression, onSelectChord, order }) {
         type="button"
         className="play-btn"
         onClick={playProgression}
+        disabled={playing}
         aria-label={`Play progression ${progression.join(" — ")}`}
       >
         <i className="fa-solid fa-play" /> ▶

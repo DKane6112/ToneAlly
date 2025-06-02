@@ -1,0 +1,75 @@
+/* layout helpers ------------------------------------------------- */
+.trainer-page   { display:flex; flex-direction:column; align-items:center; }
+.hero           { text-align:center; margin:2rem 0 1.5rem; }
+.menu-card,
+.game-card,
+.end-card       { background:var(--clr-surface); padding:2rem 2.5rem; border-radius:12px;
+                  box-shadow:0 4px 12px rgba(0,0,0,.1); width:min(90vw,540px); }
+.end-card h2, .end-card div { display:flex; justify-content: center;}
+
+label           { display:block; margin-bottom:.5rem; font-weight:600; }
+select          { width:100%; padding:.5rem; margin-bottom:1rem; }
+
+/* buttons -------------------------------------------------------- */
+button          { cursor:pointer; border:none; font:inherit; }
+.btn-primary    { background:var(--clr-primary); color:#fff; padding:.6rem 1.5rem;
+                  border-radius:8px; font-weight:600; }
+.btn-primary:disabled { opacity:.4; cursor:not-allowed; }
+
+.game-card .play-btn   { background:none; color:var(--clr-txt-primary); border: 1px solid var(--clr-primary);
+                         padding:.55rem 1.2rem; border-radius:6px; margin:1.2rem 0; }
+
+/* answer grid ---------------------------------------------------- */
+.answers-grid   { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+                  gap:.75rem; margin-top:1rem; }
+.answer-btn     { padding:.65rem .4rem; border-radius:6px;
+                  background:#e9e9e9; transition:background .18s; }
+.answer-btn:hover { background:#d3d3d3; }
+
+/* score + feedback ---------------------------------------------- */
+.scorebar       { display:flex; justify-content:space-between; font-weight:600; }
+.feedback       { position:fixed; inset:0; display:flex; align-items:center;
+                  justify-content:center; font-size:2.5rem; font-weight:800;
+                  color:#fff; animation:fades 1.1s ease-out forwards; }
+.feedback.ok    { background:rgba(46,204,113,.85); }
+.feedback.bad   { background:rgba(231,76,60,.85); }
+
+@keyframes fades {
+  0% { opacity:0; transform:scale(.8); }
+ 35%{ opacity:1; transform:scale(1); }
+100%{ opacity:0; transform:scale(.8); }
+}
+
+
+/* --- wrapper kills the old grid columns and centres the wheel --- */
+.answers-grid.wheel-wrapper {
+  display:flex; justify-content:center; margin-top:1rem;
+}
+
+/* --- wheel sizing --- */
+.wheel {
+  width:var(--size); height:var(--size);
+  max-width:90vw; max-height:90vw;   /* don’t overrun phone screens   */
+}
+
+/* --- button look & feel --- */
+.wheel-slice        { cursor:pointer; }
+.wheel-btn-bg       { fill:none; transition:fill .15s; stroke: var(--clr-primary); stroke-width:2px; }
+.wheel-btn-text     { font-size:.88rem; font-weight:600; fill:var(--clr-text-primary); margin: 0.1rem; }
+
+.wheel-slice:hover .wheel-btn-text,
+.wheel-slice:active .wheel-btn-text {fill: var(--clr-primary); }
+
+/* --- optional: bigger font on desktop --- */
+@media (min-width:700px){
+  .wheel-btn-text { font-size:.9rem; }
+}
+
+header {
+    text-align: center;
+}
+
+.micro-copy {
+    font-size: 0.8rem;
+    color: var(--clr-text-secondary);
+}

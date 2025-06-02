@@ -73,3 +73,16 @@ export async function playChord(chordName) {
     guitar.triggerAttackRelease(note, "2n", now + i * strumDelay);
   });
 }
+
+export async function playInterval(notes){
+  // notes should be json example root: "C" interval: some integer representing the semitone distance
+  await Tone.start();
+  const now = Tone.now();
+  const octave = 3; // sample octave base
+  const rootNote = Tone.Frequency(`${notes.root}${octave}`).toNote();
+  const intervalNote = Tone.Frequency(`${notes.root}${octave}`).transpose(notes.interval).toNote();
+
+  guitar.triggerAttackRelease(rootNote, "2n", now);
+  guitar.triggerAttackRelease(intervalNote, "2n", now + 0.5);
+  wetGain.gain.rampTo(0.3, 0.1); // fade in reverb
+}
